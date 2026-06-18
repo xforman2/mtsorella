@@ -40,6 +40,11 @@ export function Greeting({ name }: GreetingProps) {
 }
 ```
 
+## Copy / language
+- All user-facing UI copy is in **Czech**.
+- The `prototype/MT Sorella.html` is written in **Slovak** — translate strings to Czech, never copy
+  them verbatim.
+
 ## Hooks
 - Custom hooks are `useX` and obey the Rules of Hooks (top level only).
 - Encapsulate data fetching and side effects in hooks (e.g. `useHealth()`), not components.
