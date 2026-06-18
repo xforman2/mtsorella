@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Mtsorella.Api/Mtsorella.Api.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Mtsorella.Api.Tests/Mtsorella.Api.Tests.csproj" />
+  </Folder>
+</Solution>
