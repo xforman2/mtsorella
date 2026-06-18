@@ -4,9 +4,9 @@ export function DashboardPage() {
   return (
     <div className={styles.page}>
       <p className={styles.kicker}>Členská zóna</p>
-      <h1 className={styles.heading}>Prehľad</h1>
+      <h1 className={styles.heading}>Přehled</h1>
       <p className={styles.text}>
-        Placeholder pre člensky dashboard. Tu pribudne prehľad bodov, tréningy, výzvy a rebríček
+        Zástupný obsah pro členský dashboard. Zde přibude přehled bodů, tréninky, výzvy a žebříček
         (FR-M*).
       </p>
     </div>
