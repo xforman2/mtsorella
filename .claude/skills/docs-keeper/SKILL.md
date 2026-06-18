@@ -11,18 +11,18 @@ project is set up, run, or consumed.
 ## Docs in scope
 - **Root `README.md`** — what the repo is, monorepo layout, how to run backend + frontend, prereqs.
 - **`backend/README.md`** — backend setup, run/test commands, env/config, migrations.
-- **`frontend/README.md`** — frontend setup, scripts, `VITE_*` env vars, where the generated API
-  client lives.
+- **`frontend/README.md`** — frontend setup, scripts, `VITE_*` env vars, where the API client and
+  hand-written types live (`src/api/`).
 - **`CHANGELOG.md`** — maintained per [[conventional-commits]] (Keep a Changelog style).
-- **API docs** — derived from the OpenAPI spec; regenerated via [[api-contract-sync]], not written
-  by hand.
+- **API docs** — the backend's OpenAPI/Swagger UI. The frontend's `src/api/types.ts` is
+  hand-written and agreed with the backend developer (no codegen).
 
 ## Update triggers (update docs in the *same* PR)
 | Change | Update |
 |--------|--------|
 | New/changed run or build command | relevant README "Getting started" |
 | New env var / config | README env section (+ `.env.example` if present) |
-| New/changed endpoint or DTO | regen OpenAPI client ([[api-contract-sync]]); note in changelog |
+| New/changed endpoint or DTO | update frontend `src/api/types.ts` (agreed with backend); note in changelog |
 | New script / tool | README scripts section |
 | Architecture / layout change | root README layout section |
 | Any user-facing change | `CHANGELOG.md` `[Unreleased]` |

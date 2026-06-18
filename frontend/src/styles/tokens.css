@@ -1,0 +1,20 @@
+:root {
+  /* MT Sorella — green palette (FR-S6) */
+  --color-bg: #faf9f6;
+  --color-surface: #ffffff;
+  --color-ink: #14211b;
+  --color-ink-soft: #46544c;
+  --color-muted: #9aa89f;
+  --color-primary: #047b46;
+  --color-primary-strong: #03331e;
+  --color-accent: #0a9d5a;
+  --color-accent-soft: #9fe3c2;
+
+  /* Typography (FR-S6: Bricolage Grotesque + Inter) */
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Scale */
+  --radius: 14px;
+  --space: 8px;
+}
