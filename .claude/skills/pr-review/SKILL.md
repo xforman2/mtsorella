@@ -27,12 +27,12 @@ git diff main...HEAD                              # local branch vs main
 - [ ] DTOs (`record`) used at the boundary; EF entities not exposed directly.
 - [ ] `async`/`await` end to end; `CancellationToken` threaded through.
 - [ ] Errors return `ProblemDetails`; no leaked exception/stack details.
-- [ ] Endpoints have `.WithName`/`.WithTags` (keeps OpenAPI + [[api-contract-sync]] stable).
+- [ ] Endpoints have `.WithName`/`.WithTags` (clean OpenAPI/Swagger docs).
 - [ ] Tests added/updated (see [[test-suite]]); nullable warnings clean.
 
 ### Frontend (`/frontend`) — see [[react-frontend]]
 - [ ] Function components with typed props; Rules of Hooks respected.
-- [ ] Data/types come from the generated `src/api/` client, not hand-rolled duplicates.
+- [ ] API calls go through `src/api/` (`apiFetch`); types live in `src/api/types.ts` (hand-written, agreed with backend).
 - [ ] No hardcoded API URLs/secrets; config via `import.meta.env.VITE_*`.
 - [ ] No stray `any`; `strict` satisfied; styles use CSS Modules.
 

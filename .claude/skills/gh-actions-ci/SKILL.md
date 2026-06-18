@@ -61,5 +61,4 @@ gate job is a good middle ground.
 ## Conventions
 - Pin actions to a major version (`@v4`). Keep secrets in repo/Org secrets, never inline.
 - Build + test commands must match [[test-suite]]; a green run is required before merge ([[pr-review]]).
-- Add an optional `contract` job that runs the [[api-contract-sync]] drift check.
 - Commit workflow changes as `ci: ...` per [[conventional-commits]].
