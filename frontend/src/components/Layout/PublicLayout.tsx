@@ -10,7 +10,7 @@ export function PublicLayout() {
           MT&nbsp;Sorella
         </Link>
         <nav className={styles.nav}>
-          <Link to="/">Domov</Link>
+          <Link to="/">Domů</Link>
           <Link to="/app">Členská zóna</Link>
           <Link to="/admin">Admin</Link>
         </nav>

@@ -5,9 +5,9 @@ export function NotFound() {
     <div style={{ minHeight: '60vh', display: 'grid', placeItems: 'center', textAlign: 'center' }}>
       <div>
         <h1 style={{ fontSize: 48 }}>404</h1>
-        <p style={{ color: 'var(--color-ink-soft)', marginTop: 8 }}>Stránka nenájdená.</p>
+        <p style={{ color: 'var(--color-ink-soft)', marginTop: 8 }}>Stránka nenalezena.</p>
         <Link to="/" style={{ display: 'inline-block', marginTop: 16, fontWeight: 600 }}>
-          ← Domov
+          ← Domů
         </Link>
       </div>
     </div>
