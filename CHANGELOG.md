@@ -7,6 +7,10 @@ All notable changes to this project are documented here, following
 
 ### Added
 
+- Domain model design (`domain-model.md`) — the full MT Sorella domain (aggregates, value objects,
+  enums, relationships, domain events) derived from `requirements.md` and the prototype, with each
+  model linking back to its requirements source. Design/plan for implementing the backend `Domain/`
+  layer; no persistence (issue #24).
 - Frontend scaffold under `/frontend` — React + Vite + TypeScript, react-router skeleton
   (public / member / admin zones), CSS Modules with the MT Sorella design tokens, Vitest +
   React Testing Library, ESLint + Prettier, and a thin typed `fetch` API client.
