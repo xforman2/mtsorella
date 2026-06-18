@@ -1,0 +1,28 @@
+using System.Net;
+using Microsoft.AspNetCore.Mvc.Testing;
+
+namespace Mtsorella.Api.Tests;
+
+/// <summary>
+/// Boots the API in-memory with WebApplicationFactory and asserts the health contract.
+/// /health does not touch the database, so this runs without any infrastructure.
+/// </summary>
+public class HealthEndpointTests : IClassFixture<WebApplicationFactory<Program>>
+{
+    private readonly WebApplicationFactory<Program> _factory;
+
+    public HealthEndpointTests(WebApplicationFactory<Program> factory)
+    {
+        _factory = factory;
+    }
+
+    [Fact]
+    public async Task Health_returns_ok()
+    {
+        var client = _factory.CreateClient();
+
+        var response = await client.GetAsync("/health");
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+}
