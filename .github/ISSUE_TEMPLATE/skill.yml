@@ -1,0 +1,41 @@
+name: "🧠 Skill"
+description: "Build or improve a Claude Code skill"
+title: "skill: <slug> — <summary>"
+labels: ["type:skill", "area:skills"]
+body:
+  - type: markdown
+    attributes:
+      value: "Describe a Claude Code skill to add under `.claude/skills/<slug>/SKILL.md`."
+  - type: input
+    id: slug
+    attributes:
+      label: Skill slug
+      description: kebab-case directory name, e.g. `gh-issues`
+      placeholder: gh-issues
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: What should this skill let Claude do, and when should it trigger?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope / acceptance criteria
+      description: Concrete checklist for "done".
+      value: |
+        - [ ] `SKILL.md` with valid YAML frontmatter (`name`, `description`)
+        - [ ] Documented usage / examples
+        - [ ] Reviewed before commit
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options: ["high", "medium", "low"]
+    validations:
+      required: true
