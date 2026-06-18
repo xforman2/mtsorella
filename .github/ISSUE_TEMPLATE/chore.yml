@@ -1,0 +1,26 @@
+name: "🧹 Chore"
+description: "Maintenance, refactor, or housekeeping"
+title: "chore: <summary>"
+labels: ["type:chore"]
+body:
+  - type: textarea
+    id: task
+    attributes:
+      label: Task
+      description: What maintenance work needs doing?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: ["backend", "frontend", "ci", "skills", "repo"]
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options: ["high", "medium", "low"]
+    validations:
+      required: true

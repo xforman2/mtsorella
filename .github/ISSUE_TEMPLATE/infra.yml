@@ -1,0 +1,35 @@
+name: "🏗️ Infrastructure / setup"
+description: "Scaffolding, build, tooling, or CI work"
+title: "infra: <summary>"
+labels: ["type:infra"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What needs to be set up or changed, and why?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: ["backend", "frontend", "ci", "repo"]
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      value: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options: ["high", "medium", "low"]
+    validations:
+      required: true
