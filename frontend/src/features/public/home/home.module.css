@@ -1,0 +1,467 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 7vw, 88px);
+}
+
+/* ---- shared section primitives ---- */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kicker {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.kickerLight {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent-soft);
+  font-weight: 600;
+}
+
+.heading {
+  margin-top: 10px;
+  font-size: clamp(28px, 4.2vw, 46px);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.lead {
+  margin-top: 14px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+  max-width: 62ch;
+}
+
+.link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.inlineLink {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 2px;
+}
+
+.btnPrimary {
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primary);
+}
+
+.btnGhost {
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-primary);
+  border: 1.5px solid rgba(4, 123, 70, 0.3);
+}
+
+.photo {
+  background: repeating-linear-gradient(135deg, #e9efe9 0 16px, #e0e7e1 16px 32px);
+  border-radius: var(--radius);
+}
+
+/* ---- hero ---- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding: clamp(26px, 4vw, 52px);
+  border-radius: 18px;
+  color: #fff;
+  background: linear-gradient(160deg, var(--color-primary), var(--color-primary-strong));
+}
+
+.heroTitle {
+  font-size: clamp(38px, 7vw, 76px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1;
+}
+
+.heroSlogan {
+  font-size: clamp(15px, 1.7vw, 19px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 56ch;
+}
+
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero .btnGhost {
+  color: #fff;
+  border-color: rgba(159, 227, 194, 0.55);
+}
+
+.statStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.stat {
+  min-width: 90px;
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.4vw, 38px);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.statLabel {
+  margin-top: 4px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ---- about ---- */
+.about {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+
+.aboutPhoto {
+  aspect-ratio: 4 / 5;
+  background: repeating-linear-gradient(135deg, #e9efe9 0 16px, #e0e7e1 16px 32px);
+  border-radius: 18px;
+}
+
+/* ---- achievement cards ---- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 26px;
+  border-radius: 18px;
+  background: var(--color-surface);
+  border: 1px solid rgba(4, 123, 70, 0.1);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.medal {
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: rgba(4, 123, 70, 0.1);
+}
+
+.medal[data-medal='silver'] {
+  color: #5a6b62;
+  background: rgba(120, 150, 135, 0.16);
+}
+
+.cardYear {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.cardTitle {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.cardPlace {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.cardDesc {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+}
+
+/* ---- majorette of the month ---- */
+.majorette {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: clamp(24px, 3.5vw, 40px);
+  border-radius: 20px;
+  color: #fff;
+  background: linear-gradient(160deg, var(--color-primary), var(--color-primary-strong));
+}
+
+.majPhoto {
+  aspect-ratio: 4 / 5;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.majName {
+  margin-top: 10px;
+  font-size: clamp(26px, 3.4vw, 34px);
+  font-weight: 600;
+}
+
+.majMeta {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--color-accent-soft);
+}
+
+.majReason {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* ---- team goal ---- */
+.goal {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 3.5vw, 40px);
+  border-radius: 20px;
+  background: var(--color-surface);
+  border: 1px solid rgba(4, 123, 70, 0.1);
+}
+
+.goalRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 18px 0 10px;
+}
+
+.goalCurrent {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.goalTarget {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.progress {
+  position: relative;
+  height: 14px;
+  border-radius: 999px;
+  background: #eef2ef;
+  overflow: hidden;
+}
+
+.progressFill {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+}
+
+.goalNote {
+  margin-top: 12px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* ---- gallery ---- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: 200px;
+  gap: 14px;
+}
+
+.tile {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  overflow: hidden;
+  background: repeating-linear-gradient(135deg, #e9efe9 0 16px, #e0e7e1 16px 32px);
+}
+
+.tile[data-span='2'] {
+  grid-row: span 2;
+}
+
+.tileLabel {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #8aa093;
+  text-transform: uppercase;
+}
+
+/* ---- upcoming events ---- */
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.event {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: var(--color-surface);
+  border: 1px solid rgba(4, 123, 70, 0.1);
+}
+
+.eventDate {
+  flex-shrink: 0;
+  width: 56px;
+  text-align: center;
+}
+
+.eventDay {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.eventMonth {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.eventBody {
+  flex: 1;
+  min-width: 180px;
+}
+
+.eventTag {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: rgba(4, 123, 70, 0.1);
+}
+
+.eventTitle {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.eventLoc {
+  margin-top: 3px;
+  font-size: 14px;
+  color: var(--color-ink-soft);
+}
+
+/* ---- sponsors ---- */
+.sponsorsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: clamp(28px, 4vw, 52px);
+  border-radius: 20px;
+  background: var(--color-primary-strong);
+  color: #fff;
+}
+
+.sponsorsSection .kicker {
+  color: var(--color-accent-soft);
+}
+
+.sponsorsSection .heading {
+  color: #fff;
+}
+
+.sponsors {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.sponsor {
+  padding: 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: left;
+}
+
+.sponsorName {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.sponsorDesc {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+}

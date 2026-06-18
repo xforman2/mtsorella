@@ -44,6 +44,12 @@ export function Greeting({ name }: GreetingProps) {
 - All user-facing UI copy is in **Czech**.
 - The `prototype/MT Sorella.html` is written in **Slovak** — translate strings to Czech, never copy
   them verbatim.
+- Do not invent marketing copy: no fabricated taglines, slogans, or "Est. <year>" badges. Use the
+  real team content; if it's unknown, leave it out rather than making it up.
+
+## Routing
+- Route paths / slugs are **English (ASCII)** even though UI copy is Czech — e.g. `/gallery`,
+  `/achievements`, `/events`, `/coaches`, `/sponsors`. Keeps URLs clean and diacritic-free.
 
 ## Hooks
 - Custom hooks are `useX` and obey the Rules of Hooks (top level only).
