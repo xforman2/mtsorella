@@ -1,0 +1,64 @@
+# .NET / C# — scoped to the backend (the React frontend brings its own .gitignore)
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Ll]og/
+[Ll]ogs/
+
+# Publish output
+publish/
+[Pp]ublished/
+*.[Pp]ublish.xml
+PublishScripts/
+
+# Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+.idea/
+*.DotSettings.user
+
+# Build / restore artifacts
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.binlog
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Test results & coverage
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.trx
+*.coverage
+*.coverpackage
+coverage*.json
+coverage*.xml
+coverage*.info
+TestResults/
+
+# EF Core
+*.db
+*.db-shm
+*.db-wal
+
+# Misc
+*.cache
+*.tmp
+.DS_Store
+Thumbs.db
