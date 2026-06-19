@@ -24,3 +24,9 @@ All notable changes to this project are documented here, following
 - Repo-wide config: root `.gitignore` (Node + .NET), `.editorconfig`, and this changelog.
 - Functional requirements (`requirements.md`) and the high-fidelity prototype (`/prototype`).
 - Issue tracking + 7 Claude Code skills under `.claude/skills/`.
+
+### Removed
+
+- Placeholder `Product` vertical — the sample entity, repository, `/products` feature slices,
+  `AppDbContext` mapping, DI registration, and the initial EF migration/snapshot. Throwaway scaffold
+  that is no longer needed; real persistence arrives with its own issue.
