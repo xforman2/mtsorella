@@ -17,6 +17,9 @@ import { ProfilePage } from './features/member/profile/ProfilePage'
 import { TrainingsPage as MemberTrainingsPage } from './features/member/trainings/TrainingsPage'
 import { ChallengesPage as MemberChallengesPage } from './features/member/challenges/ChallengesPage'
 import { LeaderboardPage } from './features/member/leaderboard/LeaderboardPage'
+import { TeamPage } from './features/member/team/TeamPage'
+import { BoardPage as MemberBoardPage } from './features/member/board/BoardPage'
+import { GoalsPage } from './features/member/goals/GoalsPage'
 import { AdminDashboardPage } from './features/admin/dashboard/AdminDashboardPage'
 import { MembersPage } from './features/admin/members/MembersPage'
 import { NotFound } from './components/NotFound'
@@ -47,6 +50,9 @@ export function App() {
           <Route path="trainings" element={<MemberTrainingsPage />} />
           <Route path="challenges" element={<MemberChallengesPage />} />
           <Route path="leaderboard" element={<LeaderboardPage />} />
+          <Route path="team" element={<TeamPage />} />
+          <Route path="board" element={<MemberBoardPage />} />
+          <Route path="goals" element={<GoalsPage />} />
         </Route>
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboardPage />} />
