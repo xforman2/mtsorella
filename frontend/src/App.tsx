@@ -3,6 +3,8 @@ import { PublicLayout } from './components/Layout/PublicLayout'
 import { MemberLayout } from './components/Layout/MemberLayout'
 import { AdminLayout } from './components/Layout/AdminLayout'
 import { HomePage } from './features/public/HomePage'
+import { LoginPage } from './features/public/login/LoginPage'
+import { ApplyPage } from './features/public/apply/ApplyPage'
 import { DashboardPage } from './features/member/DashboardPage'
 import { AdminHomePage } from './features/admin/AdminHomePage'
 import { NotFound } from './components/NotFound'
@@ -17,6 +19,8 @@ export function App() {
       <Routes>
         <Route element={<PublicLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="apply" element={<ApplyPage />} />
         </Route>
         <Route path="app" element={<MemberLayout />}>
           <Route index element={<DashboardPage />} />
