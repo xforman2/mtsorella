@@ -15,7 +15,7 @@ export function PublicLayout() {
           <Link to="/admin">Admin</Link>
         </nav>
       </header>
-      <main className={styles.main}>
+      <main className={styles.mainFull}>
         <Outlet />
       </main>
     </div>

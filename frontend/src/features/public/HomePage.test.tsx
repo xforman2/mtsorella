@@ -9,7 +9,7 @@ test('renders all the main home-page sections', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByRole('heading', { name: /Elegance v každém pohybu/i })).toBeInTheDocument()
+  expect(screen.getByRole('heading', { name: /Elegance/i })).toBeInTheDocument()
   expect(screen.getByRole('heading', { name: /Nejnovější úspěchy/i })).toBeInTheDocument()
   expect(screen.getByRole('heading', { name: /Nadcházející vystoupení/i })).toBeInTheDocument()
   expect(screen.getByRole('heading', { name: /Naši partneři a sponzoři/i })).toBeInTheDocument()
