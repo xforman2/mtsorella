@@ -19,6 +19,12 @@ import { VideosPage } from './features/admin/videos/VideosPage'
 import { ChallengesPage } from './features/admin/challenges/ChallengesPage'
 import { TrainingsPage } from './features/admin/trainings/TrainingsPage'
 import { BoardPage } from './features/admin/board/BoardPage'
+import { AdminMotmPage } from './features/admin/motm/AdminMotmPage'
+import { AdminSponsorsPage } from './features/admin/sponsors/AdminSponsorsPage'
+import { AdminStatsPage } from './features/admin/stats/AdminStatsPage'
+import { AdminTrainersPage } from './features/admin/trainers/AdminTrainersPage'
+import { AdminEventsPage } from './features/admin/events/AdminEventsPage'
+import { AdminAchievementsPage } from './features/admin/achievements/AdminAchievementsPage'
 import { NotFound } from './components/NotFound'
 
 /**
@@ -51,6 +57,12 @@ export function App() {
           <Route path="challenges" element={<ChallengesPage />} />
           <Route path="trainings" element={<TrainingsPage />} />
           <Route path="board" element={<BoardPage />} />
+          <Route path="trainers" element={<AdminTrainersPage />} />
+          <Route path="events" element={<AdminEventsPage />} />
+          <Route path="achievements" element={<AdminAchievementsPage />} />
+          <Route path="motm" element={<AdminMotmPage />} />
+          <Route path="sponsors" element={<AdminSponsorsPage />} />
+          <Route path="stats" element={<AdminStatsPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

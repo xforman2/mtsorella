@@ -1,0 +1,19 @@
+.date {
+  width: 50px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.day {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.month {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+}
