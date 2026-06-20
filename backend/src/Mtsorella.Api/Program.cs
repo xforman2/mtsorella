@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Mtsorella.Api.Common.Behaviors;
 using Mtsorella.Api.Common.Endpoints;
 using Mtsorella.Api.Persistence;
+using Mtsorella.Api.Persistence.Outbox;
 using Mtsorella.Api.Persistence.Repositories;
 using Scalar.AspNetCore;
 using Serilog;
@@ -17,9 +18,15 @@ builder.Services.AddSerilog((services, configuration) => configuration
     .Enrich.FromLogContext()
     .WriteTo.Console());
 
-// The single shared database.
+// The single shared database. The outbox interceptor turns aggregates' domain events into OutboxMessage
+// rows within the same SaveChanges transaction (stateless, so one shared instance is fine).
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+    options
+        .UseNpgsql(builder.Configuration.GetConnectionString("Default"))
+        .AddInterceptors(new ConvertDomainEventsToOutboxInterceptor()));
+
+// Drains the outbox in the background, publishing each persisted event through Mediator.
+builder.Services.AddHostedService<OutboxProcessor>();
 
 // Repositories: the open generic covers simple cases; register a specific interface per
 // aggregate when it needs its own query methods.
