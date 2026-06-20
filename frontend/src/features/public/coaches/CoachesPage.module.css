@@ -1,0 +1,110 @@
+.header {
+  background: var(--color-surface);
+  padding: clamp(48px, 7vw, 90px) clamp(24px, 5vw, 80px) clamp(28px, 4vw, 44px);
+  border-bottom: 1px solid rgba(4, 123, 70, 0.08);
+}
+
+.headerInner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.lead {
+  margin-top: 14px;
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: var(--color-ink-muted);
+  max-width: 560px;
+}
+
+.body {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 80px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 26px;
+}
+
+.card {
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid rgba(4, 123, 70, 0.08);
+  box-shadow: 0 14px 36px -26px rgba(16, 40, 28, 0.3);
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  background: repeating-linear-gradient(135deg, #e9efe9 0 16px, #e0e7e1 16px 32px);
+}
+
+.photoLabel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #8aa093;
+  text-transform: uppercase;
+}
+
+.cardBody {
+  padding: 26px;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.role {
+  margin-top: 4px;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: rgba(4, 123, 70, 0.08);
+}
+
+.bio {
+  margin-top: 14px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--color-ink-muted);
+}
+
+.cta {
+  margin-top: 44px;
+  padding: clamp(28px, 4vw, 48px);
+  border-radius: 22px;
+  background: linear-gradient(150deg, var(--color-primary), var(--color-primary-deep));
+  color: #fff;
+  text-align: center;
+}
+
+.ctaTitle {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.4vw, 38px);
+  font-weight: 600;
+}
+
+.ctaText {
+  margin: 12px auto 0;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 520px;
+}
+
+.ctaBtn {
+  margin-top: 24px;
+}

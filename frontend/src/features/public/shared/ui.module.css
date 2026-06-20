@@ -251,6 +251,29 @@
   border: 1px solid rgba(10, 157, 90, 0.3);
 }
 
+/* ---- filter chips (gallery / achievements) ---- */
+.chip {
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #fff;
+  color: var(--color-ink-soft);
+  border: 1px solid rgba(4, 123, 70, 0.16);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.chip:hover {
+  border-color: rgba(4, 123, 70, 0.4);
+}
+
+.chipActive {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
 /* ---- benefit bullets (apply / partnership) ---- */
 .bullet {
   display: flex;
