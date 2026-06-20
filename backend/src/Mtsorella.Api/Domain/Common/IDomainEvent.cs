@@ -1,5 +1,8 @@
+using Mediator;
+
 namespace Mtsorella.Api.Domain.Common;
 
 // Marker for something that happened in the domain. Aggregates raise these while handling behaviour;
-// dispatch to handlers (Mediator IPublisher) is deferred to a later issue (decision D6).
-public interface IDomainEvent;
+// the outbox interceptor persists them and the OutboxProcessor publishes them via Mediator. Extending
+// INotification makes every event directly dispatchable through IPublisher (decision D6 / issue #29).
+public interface IDomainEvent : INotification;

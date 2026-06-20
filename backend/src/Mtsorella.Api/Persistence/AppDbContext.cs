@@ -15,6 +15,7 @@ using Mtsorella.Api.Domain.Sponsors;
 using Mtsorella.Api.Domain.TeamGoals;
 using Mtsorella.Api.Domain.Trainings;
 using Mtsorella.Api.Persistence.Converters;
+using Mtsorella.Api.Persistence.Outbox;
 // Disambiguate from System.ApplicationId, which ImplicitUsings brings into scope via `using System;`.
 using ApplicationId = Mtsorella.Api.Domain.Common.ApplicationId;
 
@@ -47,6 +48,9 @@ public class AppDbContext : DbContext
     public DbSet<Application> Applications => Set<Application>();
     public DbSet<PartnershipInquiry> PartnershipInquiries => Set<PartnershipInquiry>();
     public DbSet<ContactMessage> ContactMessages => Set<ContactMessage>();
+
+    // Domain events persisted in the same transaction as the aggregate change; drained by OutboxProcessor.
+    public DbSet<OutboxMessage> OutboxMessages => Set<OutboxMessage>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
