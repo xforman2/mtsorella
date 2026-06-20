@@ -13,7 +13,8 @@ import { SponsorsPage } from './features/public/sponsors/SponsorsPage'
 import { ContactPage } from './features/public/contact/ContactPage'
 import { PartnershipPage } from './features/public/partnership/PartnershipPage'
 import { DashboardPage } from './features/member/DashboardPage'
-import { AdminHomePage } from './features/admin/AdminHomePage'
+import { AdminDashboardPage } from './features/admin/dashboard/AdminDashboardPage'
+import { MembersPage } from './features/admin/members/MembersPage'
 import { NotFound } from './components/NotFound'
 
 /**
@@ -40,7 +41,8 @@ export function App() {
           <Route index element={<DashboardPage />} />
         </Route>
         <Route path="admin" element={<AdminLayout />}>
-          <Route index element={<AdminHomePage />} />
+          <Route index element={<AdminDashboardPage />} />
+          <Route path="members" element={<MembersPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
