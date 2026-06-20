@@ -9,13 +9,13 @@ namespace Mtsorella.Api.Domain.Members;
 // FR-M11–M13 / FR-M34–M42 / BE-6 / BE-15.
 public sealed class Member : AggregateRoot<MemberId>
 {
-    public string FullName { get; private set; }
+    public string FullName { get; private set; } = null!;
     public string? Nickname { get; private set; }
     public MemberCategory Category { get; private set; }
     public string? TeamRole { get; private set; }
     public int YearsInTeam { get; private set; }
     public string? Bio { get; private set; }
-    public Email ParentEmail { get; private set; }
+    public Email ParentEmail { get; private set; } = null!;
     public MediaRef? Photo { get; private set; }
     public Points Points { get; private set; }
     public Level Level => Level.For(Points);
@@ -51,6 +51,11 @@ public sealed class Member : AggregateRoot<MemberId>
         Points = Points.Zero;
         Streak = Streak.None;
         IsActive = true;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private Member()
+    {
     }
 
     public static ErrorOr<Member> Create(

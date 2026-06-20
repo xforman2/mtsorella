@@ -9,10 +9,10 @@ public sealed class Achievement : AggregateRoot<AchievementId>
 {
     public int Year { get; private set; }
     public CompetitionType CompetitionType { get; private set; }
-    public string Name { get; private set; }
-    public Placement Placement { get; private set; }
+    public string Name { get; private set; } = null!;
+    public Placement Placement { get; private set; } = null!;
     public Medal Medal { get; private set; }
-    public string Description { get; private set; }
+    public string Description { get; private set; } = null!;
 
     private Achievement(
         AchievementId id,
@@ -30,6 +30,11 @@ public sealed class Achievement : AggregateRoot<AchievementId>
         Placement = placement;
         Medal = medal;
         Description = description;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private Achievement()
+    {
     }
 
     public static ErrorOr<Achievement> Create(

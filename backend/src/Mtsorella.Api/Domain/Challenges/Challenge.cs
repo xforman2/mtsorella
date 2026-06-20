@@ -8,12 +8,12 @@ namespace Mtsorella.Api.Domain.Challenges;
 // Kept separate from its submissions — different lifecycle and authors (D5). FR-M23 / FR-A7 / BE-11.
 public sealed class Challenge : AggregateRoot<ChallengeId>
 {
-    public string Name { get; private set; }
-    public string Description { get; private set; }
+    public string Name { get; private set; } = null!;
+    public string Description { get; private set; } = null!;
     public string? Category { get; private set; }
     public DateTimeOffset Deadline { get; private set; }
     public int CompletionPoints { get; private set; }
-    public MediaRef InstructionalVideo { get; private set; }
+    public MediaRef InstructionalVideo { get; private set; } = null!;
     public CoachId CreatedBy { get; private set; }
     public bool IsActive { get; private set; }
 
@@ -36,6 +36,11 @@ public sealed class Challenge : AggregateRoot<ChallengeId>
         InstructionalVideo = instructionalVideo;
         CreatedBy = createdBy;
         IsActive = true;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private Challenge()
+    {
     }
 
     public static ErrorOr<Challenge> Create(

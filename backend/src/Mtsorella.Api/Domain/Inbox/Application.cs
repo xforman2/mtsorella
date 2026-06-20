@@ -11,12 +11,12 @@ namespace Mtsorella.Api.Domain.Inbox;
 // use case, not an automatic domain link. FR-P28–P31 / BE-24 / BE-28 (GDPR consent).
 public sealed class Application : AggregateRoot<ApplicationId>
 {
-    public string ChildName { get; private set; }
+    public string ChildName { get; private set; } = null!;
     public DateOfBirth ChildDateOfBirth { get; private set; }
     public MemberCategory CategoryOfInterest { get; private set; }
-    public string ParentName { get; private set; }
-    public Email ParentEmail { get; private set; }
-    public PhoneNumber ParentPhone { get; private set; }
+    public string ParentName { get; private set; } = null!;
+    public Email ParentEmail { get; private set; } = null!;
+    public PhoneNumber ParentPhone { get; private set; } = null!;
     public string? PreviousExperience { get; private set; }
     public bool ConsentGiven { get; private set; }
     public ApplicationStatus Status { get; private set; }
@@ -45,6 +45,11 @@ public sealed class Application : AggregateRoot<ApplicationId>
         ConsentGiven = consentGiven;
         Status = ApplicationStatus.New;
         SubmittedOn = submittedOn;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private Application()
+    {
     }
 
     public static ErrorOr<Application> Submit(

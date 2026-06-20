@@ -14,10 +14,10 @@ public sealed class Training : AggregateRoot<TrainingId>
 
     public DateTimeOffset StartsAt { get; private set; }
     public DateTimeOffset EndsAt { get; private set; }
-    public string Location { get; private set; }
+    public string Location { get; private set; } = null!;
     public MemberCategory Category { get; private set; }
     public string? WhatToBring { get; private set; }
-    public Recurrence Recurrence { get; private set; }
+    public Recurrence Recurrence { get; private set; } = null!;
     public int AttendancePoints { get; private set; }
 
     private readonly List<TrainingAttendance> _attendances = new();
@@ -41,6 +41,11 @@ public sealed class Training : AggregateRoot<TrainingId>
         WhatToBring = whatToBring;
         Recurrence = recurrence;
         AttendancePoints = attendancePoints;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private Training()
+    {
     }
 
     public static ErrorOr<Training> Create(

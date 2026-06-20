@@ -9,10 +9,10 @@ namespace Mtsorella.Api.Domain.Coaches;
 // FR-P18–P20 / BE-7.
 public sealed class Coach : AggregateRoot<CoachId>
 {
-    public string FullName { get; private set; }
-    public string RoleTitle { get; private set; }
+    public string FullName { get; private set; } = null!;
+    public string RoleTitle { get; private set; } = null!;
     public int YearsInTeam { get; private set; }
-    public string Bio { get; private set; }
+    public string Bio { get; private set; } = null!;
     public MediaRef? Photo { get; private set; }
     public bool ShowOnWebsite { get; private set; }
 
@@ -25,6 +25,11 @@ public sealed class Coach : AggregateRoot<CoachId>
         Bio = bio;
         Photo = photo;
         ShowOnWebsite = showOnWebsite;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private Coach()
+    {
     }
 
     public static ErrorOr<Coach> Create(

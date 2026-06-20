@@ -11,6 +11,11 @@ public sealed class TrainingAttendance : Entity<TrainingAttendanceId>
     public DateTime? ConfirmedOn { get; private set; }
     public bool HasEarnedPoints { get; private set; }
 
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private TrainingAttendance()
+    {
+    }
+
     private TrainingAttendance(TrainingAttendanceId id, MemberId memberId, AttendanceStatus status, DateTime confirmedOn)
     {
         Id = id;

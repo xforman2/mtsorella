@@ -7,8 +7,13 @@ public sealed class PointTransaction : Entity<PointTransactionId>
 {
     public int Amount { get; private init; }
     public PointSource Source { get; private init; }
-    public string Reason { get; private init; }
+    public string Reason { get; private init; } = null!;
     public DateTime OccurredOn { get; private init; }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private PointTransaction()
+    {
+    }
 
     private PointTransaction(PointTransactionId id, int amount, PointSource source, string reason, DateTime occurredOn)
     {

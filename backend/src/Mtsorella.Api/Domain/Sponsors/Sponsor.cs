@@ -7,8 +7,8 @@ namespace Mtsorella.Api.Domain.Sponsors;
 // A partner/sponsor shown on the site (aggregate root). FR-P24–P25 / FR-A13 / BE-12.
 public sealed class Sponsor : AggregateRoot<SponsorId>
 {
-    public string Name { get; private set; }
-    public string Description { get; private set; }
+    public string Name { get; private set; } = null!;
+    public string Description { get; private set; } = null!;
     public MediaRef? Logo { get; private set; }
     public string? WebsiteUrl { get; private set; }
 
@@ -19,6 +19,11 @@ public sealed class Sponsor : AggregateRoot<SponsorId>
         Description = description;
         Logo = logo;
         WebsiteUrl = websiteUrl;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private Sponsor()
+    {
     }
 
     public static ErrorOr<Sponsor> Create(string name, string description, MediaRef? logo = null, string? websiteUrl = null)

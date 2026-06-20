@@ -8,8 +8,8 @@ namespace Mtsorella.Api.Domain.Announcements;
 public sealed class Announcement : AggregateRoot<AnnouncementId>
 {
     public CoachId AuthorId { get; private set; }
-    public string Title { get; private set; }
-    public string Body { get; private set; }
+    public string Title { get; private set; } = null!;
+    public string Body { get; private set; } = null!;
     public bool IsPinned { get; private set; }
     public DateTimeOffset PublishedOn { get; private set; }
 
@@ -23,6 +23,11 @@ public sealed class Announcement : AggregateRoot<AnnouncementId>
         Title = title;
         Body = body;
         PublishedOn = publishedOn;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private Announcement()
+    {
     }
 
     public static ErrorOr<Announcement> Publish(CoachId author, string title, string body, DateTimeOffset publishedOn)

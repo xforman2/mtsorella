@@ -10,7 +10,7 @@ public sealed class MonthlyHighlight : AggregateRoot<MonthlyHighlightId>
 {
     public YearMonth Month { get; private set; }
     public MemberId MemberId { get; private set; }
-    public string Reason { get; private set; }
+    public string Reason { get; private set; } = null!;
     public MediaRef? Photo { get; private set; }
 
     private MonthlyHighlight(MonthlyHighlightId id, YearMonth month, MemberId memberId, string reason, MediaRef? photo)
@@ -20,6 +20,11 @@ public sealed class MonthlyHighlight : AggregateRoot<MonthlyHighlightId>
         MemberId = memberId;
         Reason = reason;
         Photo = photo;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private MonthlyHighlight()
+    {
     }
 
     public static ErrorOr<MonthlyHighlight> Create(YearMonth month, MemberId member, string reason, MediaRef? photo = null)
