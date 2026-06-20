@@ -133,11 +133,11 @@
   width: 100%;
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: 0 var(--section-pad-x) clamp(28px, 4vw, 56px);
+  padding: 0 var(--section-pad-x) clamp(48px, 7vw, 96px);
 }
 
 .heroContent {
-  max-width: 760px;
+  max-width: 920px;
   animation: fadeUp 0.7s ease both;
 }
 
