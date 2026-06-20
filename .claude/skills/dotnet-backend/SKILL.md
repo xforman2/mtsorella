@@ -168,12 +168,14 @@ no validator simply skips validation.
 - Handlers depend on a **repository abstraction**, never on `AppDbContext` directly. This keeps EF out
   of the slices and lets handlers be unit-tested against a faked repository.
 - Repositories live in `Persistence/Repositories/`:
-  - `IRepository<TEntity>` / `Repository<TEntity>` — common operations (`GetByIdAsync`, `ListAsync`,
-    `AddAsync`, `Update`, `Remove`, `SaveChangesAsync`).
-  - One interface per aggregate (e.g. `IProductRepository : IRepository<Product>`) for
+  - `IRepository<TEntity, TId>` / `Repository<TEntity, TId>` (`where TEntity : AggregateRoot<TId>`,
+    `where TId : struct`) — common operations (`GetByIdAsync`, `ListAsync`, `AddAsync`, `Update`,
+    `Remove`, `SaveChangesAsync`). `TId` is the aggregate's **strongly-typed id**, so `GetByIdAsync`
+    takes e.g. a `MemberId`, not a bare `Guid` — handing it the wrong id type won't compile.
+  - One interface per aggregate (e.g. `IMemberRepository : IRepository<Member, MemberId>`) for
     entity-specific queries. Add query methods there; do **not** expose `IQueryable` (it leaks EF).
-  - Register in `Program.cs`: open generic `AddScoped(typeof(IRepository<>), typeof(Repository<>))`
-    plus a line per specific repo, e.g. `AddScoped<IProductRepository, ProductRepository>()`.
+  - Register in `Program.cs`: open generic `AddScoped(typeof(IRepository<,>), typeof(Repository<,>))`
+    plus a line per specific repo, e.g. `AddScoped<IMemberRepository, MemberRepository>()`.
 - **Unit of work:** every repository in a request shares the same scoped `AppDbContext`, so one
   `SaveChangesAsync()` commits all tracked changes — call it once, after the writes (even when several
   repositories were used).
@@ -181,7 +183,25 @@ no validator simply skips validation.
   the handler rather than projecting in SQL. For a genuinely hot/heavy read, add a purpose-built method
   on the specific repository that returns the projection.
 - Every async data call takes the `CancellationToken`.
-- One `AppDbContext`; configure entities in `OnModelCreating` (max lengths, precision, keys).
+
+## Persistence — EF Core mapping
+- One `AppDbContext`. Per-aggregate config goes in an `IEntityTypeConfiguration<T>` under
+  `Persistence/Configurations/`; they self-register via `ApplyConfigurationsFromAssembly(...)` in
+  `OnModelCreating` (max lengths, precision, keys, indexes) — no manual `modelBuilder` edits per type.
+- **Strongly-typed ids → `Guid`**: one small `ValueConverter` per id in
+  `Persistence/Converters/IdConverters.cs` (e.g. `MemberIdConverter : ValueConverter<MemberId, Guid>`),
+  each registered explicitly in `AppDbContext.ConfigureConventions` with
+  `configurationBuilder.Properties<MemberId>().HaveConversion<MemberIdConverter>()`. Adding an id means
+  adding its converter there plus that one registration line.
+- **Single-value value objects → a primitive column** via a `ValueConverter` in
+  `Persistence/Converters/`, registered globally with `configurationBuilder.Properties<T>()
+  .HaveConversion<…>()` (e.g. `Email`→`string`, `Points`→`int`). Converters call the domain factory on
+  read; data was validated on write, so reconstruction is trusted and EF stays out of `Domain/`.
+- **Multi-field value objects → owned types** (`OwnsOne`/`OwnsMany`) configured on the owning aggregate
+  (not global). A VO holding a collection (e.g. `Recurrence`) maps as `OwnsOne(...).ToJson()`.
+- **Materialization:** rich aggregates have no public/parameterless ctor, so give each an EF-only
+  `private Entity() { }` and map private collection backing fields with `PropertyAccessMode.Field`.
+- Media stays out of the DB: persist only the `MediaRef` storage key, never bytes.
 - Migrations via the pinned local tool:
   `cd backend && dotnet ef migrations add <Name> --project src/Mtsorella.Api --output-dir Persistence/Migrations`.
   Tooling lives in `.config/dotnet-tools.json`; run `dotnet tool restore` first on a fresh clone.
