@@ -9,7 +9,7 @@ namespace Mtsorella.Api.Domain.TeamGoals;
 // / FR-A12 / BE-19.
 public sealed class TeamGoal : AggregateRoot<TeamGoalId>
 {
-    public string Title { get; private set; }
+    public string Title { get; private set; } = null!;
     public Points Target { get; private set; }
     public Points Progress { get; private set; }
     public TeamGoalStatus Status { get; private set; }
@@ -24,6 +24,11 @@ public sealed class TeamGoal : AggregateRoot<TeamGoalId>
         Progress = Points.Zero;
         Status = TeamGoalStatus.Active;
         StartedOn = startedOn;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private TeamGoal()
+    {
     }
 
     public static ErrorOr<TeamGoal> Create(string title, Points target, DateOnly startedOn)

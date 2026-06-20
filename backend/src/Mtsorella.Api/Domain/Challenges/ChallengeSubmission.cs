@@ -16,7 +16,7 @@ public sealed class ChallengeSubmission : AggregateRoot<ChallengeSubmissionId>
 {
     public ChallengeId ChallengeId { get; private set; }
     public MemberId MemberId { get; private set; }
-    public MediaRef Video { get; private set; }
+    public MediaRef Video { get; private set; } = null!;
     public DateTimeOffset SubmittedOn { get; private set; }
     public DateTimeOffset DeadlineSnapshot { get; private set; }
     public SubmissionStatus Status { get; private set; }
@@ -40,6 +40,11 @@ public sealed class ChallengeSubmission : AggregateRoot<ChallengeSubmissionId>
         DeadlineSnapshot = deadlineSnapshot;
         SubmittedOn = submittedOn;
         Status = SubmissionStatus.Submitted;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private ChallengeSubmission()
+    {
     }
 
     public static ErrorOr<ChallengeSubmission> Submit(

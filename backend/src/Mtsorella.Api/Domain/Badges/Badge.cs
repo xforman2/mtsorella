@@ -8,8 +8,8 @@ namespace Mtsorella.Api.Domain.Badges;
 // members reference earned badges by BadgeId (D9).
 public sealed class Badge : AggregateRoot<BadgeId>
 {
-    public string Name { get; private set; }
-    public string Description { get; private set; }
+    public string Name { get; private set; } = null!;
+    public string Description { get; private set; } = null!;
     public MediaRef? Icon { get; private set; }
     public string? Criteria { get; private set; }
     public bool IsActive { get; private set; }
@@ -22,6 +22,11 @@ public sealed class Badge : AggregateRoot<BadgeId>
         Icon = icon;
         Criteria = criteria;
         IsActive = true;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private Badge()
+    {
     }
 
     public static ErrorOr<Badge> Create(string name, string description, MediaRef? icon = null, string? criteria = null)

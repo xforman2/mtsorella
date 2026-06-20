@@ -1,21 +1,52 @@
 using Microsoft.EntityFrameworkCore;
+using Mtsorella.Api.Domain.Achievements;
+using Mtsorella.Api.Domain.Announcements;
+using Mtsorella.Api.Domain.Badges;
+using Mtsorella.Api.Domain.Challenges;
+using Mtsorella.Api.Domain.Coaches;
 using Mtsorella.Api.Domain.Common;
 using Mtsorella.Api.Domain.Common.ValueObjects;
+using Mtsorella.Api.Domain.Gallery;
+using Mtsorella.Api.Domain.Highlights;
+using Mtsorella.Api.Domain.Inbox;
+using Mtsorella.Api.Domain.Members;
+using Mtsorella.Api.Domain.Performances;
+using Mtsorella.Api.Domain.Sponsors;
+using Mtsorella.Api.Domain.TeamGoals;
+using Mtsorella.Api.Domain.Trainings;
 using Mtsorella.Api.Persistence.Converters;
 // Disambiguate from System.ApplicationId, which ImplicitUsings brings into scope via `using System;`.
 using ApplicationId = Mtsorella.Api.Domain.Common.ApplicationId;
 
 namespace Mtsorella.Api.Persistence;
 
-// No aggregates are mapped yet — DbSets and their IEntityTypeConfiguration<T> files land with the
-// aggregate-mapping issue (#28). This foundation only registers the shared conventions every mapping
-// relies on: strongly-typed ids and single-value value objects always persist the same way.
+// The single shared database context. Each aggregate root gets a DbSet; per-aggregate
+// IEntityTypeConfiguration<T> files in Persistence/Configurations/ map owned children, value objects,
+// and constraints. Strongly-typed ids and single-value value objects convert the same way everywhere
+// via the conventions below. Owned children (e.g. a member's point history) have no DbSet of their own.
 public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     {
     }
+
+    public DbSet<Member> Members => Set<Member>();
+    public DbSet<Coach> Coaches => Set<Coach>();
+    public DbSet<Badge> Badges => Set<Badge>();
+    public DbSet<Training> Trainings => Set<Training>();
+    public DbSet<Challenge> Challenges => Set<Challenge>();
+    public DbSet<ChallengeSubmission> ChallengeSubmissions => Set<ChallengeSubmission>();
+    public DbSet<Announcement> Announcements => Set<Announcement>();
+    public DbSet<Achievement> Achievements => Set<Achievement>();
+    public DbSet<Performance> Performances => Set<Performance>();
+    public DbSet<TeamGoal> TeamGoals => Set<TeamGoal>();
+    public DbSet<MonthlyHighlight> MonthlyHighlights => Set<MonthlyHighlight>();
+    public DbSet<GalleryPhoto> GalleryPhotos => Set<GalleryPhoto>();
+    public DbSet<Sponsor> Sponsors => Set<Sponsor>();
+    public DbSet<Application> Applications => Set<Application>();
+    public DbSet<PartnershipInquiry> PartnershipInquiries => Set<PartnershipInquiry>();
+    public DbSet<ContactMessage> ContactMessages => Set<ContactMessage>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

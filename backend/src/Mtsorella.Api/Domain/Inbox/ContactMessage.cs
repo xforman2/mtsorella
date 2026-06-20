@@ -7,9 +7,9 @@ namespace Mtsorella.Api.Domain.Inbox;
 // A submitted contact form (aggregate root) with a New → Handled lifecycle. FR-P26 / BE-24.
 public sealed class ContactMessage : AggregateRoot<ContactMessageId>
 {
-    public string Name { get; private set; }
-    public Email Email { get; private set; }
-    public string Message { get; private set; }
+    public string Name { get; private set; } = null!;
+    public Email Email { get; private set; } = null!;
+    public string Message { get; private set; } = null!;
     public InquiryStatus Status { get; private set; }
     public DateTimeOffset SubmittedOn { get; private set; }
 
@@ -21,6 +21,11 @@ public sealed class ContactMessage : AggregateRoot<ContactMessageId>
         Message = message;
         Status = InquiryStatus.New;
         SubmittedOn = submittedOn;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private ContactMessage()
+    {
     }
 
     public static ErrorOr<ContactMessage> Submit(string name, Email email, string message, DateTimeOffset submittedOn)

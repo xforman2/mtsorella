@@ -7,10 +7,10 @@ namespace Mtsorella.Api.Domain.Performances;
 // kept as a boundary (§8). FR-P21–P23 / FR-A9 / BE-9.
 public sealed class Performance : AggregateRoot<PerformanceId>
 {
-    public string Name { get; private set; }
+    public string Name { get; private set; } = null!;
     public DateTimeOffset StartsAt { get; private set; }
-    public string Location { get; private set; }
-    public string Type { get; private set; }
+    public string Location { get; private set; } = null!;
+    public string Type { get; private set; } = null!;
 
     private Performance(PerformanceId id, string name, DateTimeOffset startsAt, string location, string type)
     {
@@ -19,6 +19,11 @@ public sealed class Performance : AggregateRoot<PerformanceId>
         StartsAt = startsAt;
         Location = location;
         Type = type;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private Performance()
+    {
     }
 
     public static ErrorOr<Performance> Create(string name, DateTimeOffset startsAt, string location, string type)

@@ -8,7 +8,7 @@ namespace Mtsorella.Api.Domain.Gallery;
 // MediaRef; the bytes/storage are a boundary (§8). FR-P10–P13 / BE-13 / BE-21.
 public sealed class GalleryPhoto : AggregateRoot<GalleryPhotoId>
 {
-    public MediaRef Media { get; private set; }
+    public MediaRef Media { get; private set; } = null!;
     public PhotoCategory Category { get; private set; }
     public int Year { get; private set; }
     public string? Caption { get; private set; }
@@ -20,6 +20,11 @@ public sealed class GalleryPhoto : AggregateRoot<GalleryPhotoId>
         Category = category;
         Year = year;
         Caption = caption;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private GalleryPhoto()
+    {
     }
 
     public static ErrorOr<GalleryPhoto> Create(MediaRef media, PhotoCategory category, int year, string? caption = null)

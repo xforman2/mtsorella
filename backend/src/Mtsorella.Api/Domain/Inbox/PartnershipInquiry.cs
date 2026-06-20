@@ -8,12 +8,12 @@ namespace Mtsorella.Api.Domain.Inbox;
 // FR-P32–P33 / BE-24.
 public sealed class PartnershipInquiry : AggregateRoot<PartnershipInquiryId>
 {
-    public string CompanyName { get; private set; }
-    public string ContactPerson { get; private set; }
-    public Email Email { get; private set; }
-    public PhoneNumber Phone { get; private set; }
+    public string CompanyName { get; private set; } = null!;
+    public string ContactPerson { get; private set; } = null!;
+    public Email Email { get; private set; } = null!;
+    public PhoneNumber Phone { get; private set; } = null!;
     public CooperationType CooperationType { get; private set; }
-    public string Message { get; private set; }
+    public string Message { get; private set; } = null!;
     public InquiryStatus Status { get; private set; }
     public DateTimeOffset SubmittedOn { get; private set; }
 
@@ -36,6 +36,11 @@ public sealed class PartnershipInquiry : AggregateRoot<PartnershipInquiryId>
         Message = message;
         Status = InquiryStatus.New;
         SubmittedOn = submittedOn;
+    }
+
+    // EF Core materialization ctor; EF populates mapped members after construction.
+    private PartnershipInquiry()
+    {
     }
 
     public static ErrorOr<PartnershipInquiry> Submit(
