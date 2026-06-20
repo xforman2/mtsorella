@@ -1,0 +1,255 @@
+.hero {
+  background: linear-gradient(160deg, var(--color-primary), var(--color-primary-deep));
+  color: #fff;
+  padding: clamp(32px, 4vw, 56px) clamp(20px, 4vw, 64px) clamp(48px, 6vw, 80px);
+}
+
+.heroInner {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-accent-soft);
+  font-weight: 600;
+}
+
+.h1 {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 600;
+}
+
+.toggle {
+  display: inline-flex;
+  margin-top: 22px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.toggleBtn {
+  padding: 9px 20px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.toggleBtnActive {
+  color: var(--color-primary);
+  background: #fff;
+}
+
+.podium {
+  margin-top: 40px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(10px, 3vw, 28px);
+}
+
+.podiumItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(92px, 26vw, 150px);
+}
+
+.podiumMedal {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.podiumAvatar {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin: 8px 0;
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0 8px,
+    rgba(255, 255, 255, 0.1) 8px 16px
+  );
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.podiumNick {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.podiumCat {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.podiumBar {
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 14px 14px 0 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-bottom: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 14px;
+}
+
+.podiumPts {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-accent-soft);
+}
+
+.podiumPtsLabel {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.body {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: clamp(32px, 4vw, 56px) clamp(20px, 4vw, 64px) 64px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.chip {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  background: #fff;
+  color: var(--color-ink-soft);
+  border: 1px solid rgba(4, 123, 70, 0.16);
+  cursor: not-allowed;
+}
+
+.chipActive {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.list {
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(4, 123, 70, 0.1);
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+  border-bottom: 1px solid rgba(4, 123, 70, 0.07);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.rowMe {
+  background: rgba(4, 123, 70, 0.04);
+}
+
+.rank {
+  width: 28px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.rowTop3 .rank {
+  color: var(--color-primary);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+}
+
+.nickRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nick {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.meBadge {
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: rgba(4, 123, 70, 0.1);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 3px;
+}
+
+.metaDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.meta {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.points {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
