@@ -7,6 +7,11 @@ All notable changes to this project are documented here, following
 
 ### Added
 
+- Domain-event dispatch via the outbox pattern (issue #29) — a `SaveChanges` interceptor persists
+  each aggregate's domain events as `OutboxMessage` rows in the same transaction as the state change,
+  and a background worker (`OutboxProcessor`) publishes them asynchronously through Mediator, retrying
+  on failure (at-least-once). `IDomainEvent` now extends Mediator's `INotification`. Includes the
+  `AddOutboxMessages` migration (the `OutboxMessages` table with a filtered index on unprocessed rows).
 - Backend domain layer (`backend/src/Mtsorella.Api/Domain/`) — implements the `domain-model.md`
   design (issue #24): rich aggregates (Member, Coach, Badge, Training, Challenge,
   ChallengeSubmission, Announcement, TeamGoal, MonthlyHighlight, Achievement, Performance,
