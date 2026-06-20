@@ -1,0 +1,105 @@
+/* Member shell extras — reuses layout.module.css for the header/overlay shell. */
+
+.pointsBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 8px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(4, 123, 70, 0.14);
+  box-shadow: 0 1px 2px rgba(16, 40, 28, 0.05);
+}
+
+.pointsAvatar {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pointsVal {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.pointsUnit {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+.logout {
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  border: 1px solid rgba(4, 123, 70, 0.16);
+  background: transparent;
+  white-space: nowrap;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+}
+
+/* ---- mobile bottom nav ---- */
+.bottomNav {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  justify-content: space-around;
+  padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(4, 123, 70, 0.12);
+}
+
+.bottomItem {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 10px;
+  color: #8a988f;
+}
+
+.bottomItemActive {
+  color: var(--color-primary);
+}
+
+.bottomIcon {
+  font-size: 20px;
+  opacity: 0.5;
+}
+
+.bottomItemActive .bottomIcon {
+  opacity: 1;
+}
+
+.bottomLabel {
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+@media (max-width: 920px) {
+  .bottomNav {
+    display: flex;
+  }
+  .main {
+    padding-bottom: 76px;
+  }
+}

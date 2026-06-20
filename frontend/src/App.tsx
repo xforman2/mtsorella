@@ -12,7 +12,8 @@ import { EventsPage } from './features/public/events/EventsPage'
 import { SponsorsPage } from './features/public/sponsors/SponsorsPage'
 import { ContactPage } from './features/public/contact/ContactPage'
 import { PartnershipPage } from './features/public/partnership/PartnershipPage'
-import { DashboardPage } from './features/member/DashboardPage'
+import { MemberDashboardPage } from './features/member/dashboard/MemberDashboardPage'
+import { ProfilePage } from './features/member/profile/ProfilePage'
 import { AdminDashboardPage } from './features/admin/dashboard/AdminDashboardPage'
 import { MembersPage } from './features/admin/members/MembersPage'
 import { NotFound } from './components/NotFound'
@@ -38,7 +39,8 @@ export function App() {
           <Route path="partnership" element={<PartnershipPage />} />
         </Route>
         <Route path="app" element={<MemberLayout />}>
-          <Route index element={<DashboardPage />} />
+          <Route index element={<MemberDashboardPage />} />
+          <Route path="profile" element={<ProfilePage />} />
         </Route>
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboardPage />} />
