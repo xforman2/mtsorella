@@ -15,6 +15,10 @@ import { PartnershipPage } from './features/public/partnership/PartnershipPage'
 import { DashboardPage } from './features/member/DashboardPage'
 import { AdminDashboardPage } from './features/admin/dashboard/AdminDashboardPage'
 import { MembersPage } from './features/admin/members/MembersPage'
+import { VideosPage } from './features/admin/videos/VideosPage'
+import { ChallengesPage } from './features/admin/challenges/ChallengesPage'
+import { TrainingsPage } from './features/admin/trainings/TrainingsPage'
+import { BoardPage } from './features/admin/board/BoardPage'
 import { NotFound } from './components/NotFound'
 
 /**
@@ -43,6 +47,10 @@ export function App() {
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboardPage />} />
           <Route path="members" element={<MembersPage />} />
+          <Route path="videos" element={<VideosPage />} />
+          <Route path="challenges" element={<ChallengesPage />} />
+          <Route path="trainings" element={<TrainingsPage />} />
+          <Route path="board" element={<BoardPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
