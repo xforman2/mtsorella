@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import styles from './layout.module.css'
 
-const navItems = [
+const navItems: { to: string; label: string; end?: boolean }[] = [
+  { to: '/', label: 'Domů', end: true },
   { to: '/gallery', label: 'Galerie' },
   { to: '/achievements', label: 'Úspěchy' },
   { to: '/coaches', label: 'Trenéři' },
@@ -29,6 +30,7 @@ export function PublicLayout() {
             <NavLink
               key={item.to}
               to={item.to}
+              end={item.end}
               className={({ isActive }) =>
                 isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
               }
@@ -82,6 +84,7 @@ export function PublicLayout() {
               <NavLink
                 key={item.to}
                 to={item.to}
+                end={item.end}
                 onClick={closeMenu}
                 className={({ isActive }) =>
                   isActive

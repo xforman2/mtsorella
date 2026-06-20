@@ -17,6 +17,7 @@ function renderLayout() {
 test('public header renders the nav links and auth CTAs', () => {
   renderLayout()
   for (const label of [
+    'Domů',
     'Galerie',
     'Úspěchy',
     'Trenéři',
