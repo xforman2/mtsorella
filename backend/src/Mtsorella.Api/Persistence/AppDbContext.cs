@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Mtsorella.Api.Domain.Common;
+using Mtsorella.Api.Domain.Common.ValueObjects;
 using Mtsorella.Api.Persistence.Converters;
 // Disambiguate from System.ApplicationId, which ImplicitUsings brings into scope via `using System;`.
 using ApplicationId = Mtsorella.Api.Domain.Common.ApplicationId;
@@ -27,6 +28,12 @@ public class AppDbContext : DbContext
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
         base.ConfigureConventions(configurationBuilder);
+
+        // Single-value value objects -> their primitive column, wherever the type appears.
+        configurationBuilder.Properties<Email>().HaveConversion<EmailConverter>();
+        configurationBuilder.Properties<PhoneNumber>().HaveConversion<PhoneNumberConverter>();
+        configurationBuilder.Properties<Points>().HaveConversion<PointsConverter>();
+        configurationBuilder.Properties<DateOfBirth>().HaveConversion<DateOfBirthConverter>();
 
         // Every strongly-typed id -> Guid. One explicit line per id (converters in IdConverters.cs).
         configurationBuilder.Properties<MemberId>().HaveConversion<MemberIdConverter>();
