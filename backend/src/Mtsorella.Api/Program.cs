@@ -24,7 +24,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Repositories: the open generic covers simple cases; register a specific interface per
 // aggregate when it needs its own query methods.
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 // Mediator (source-generated). Scoped so handlers can depend on the scoped DbContext.
 builder.Services.AddMediator(options => options.ServiceLifetime = ServiceLifetime.Scoped);
