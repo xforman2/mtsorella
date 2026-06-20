@@ -34,6 +34,19 @@ a {
   text-decoration: none;
 }
 
+/* Strip native control chrome so custom button backgrounds render their true
+   color (WebKit otherwise tints/overlays <button> backgrounds). */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 ::selection {
   background: var(--color-primary);
   color: #fff;
