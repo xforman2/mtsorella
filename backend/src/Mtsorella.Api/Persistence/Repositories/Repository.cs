@@ -1,13 +1,15 @@
 using Microsoft.EntityFrameworkCore;
+using Mtsorella.Api.Domain.Common;
 
 namespace Mtsorella.Api.Persistence.Repositories;
 
 /// <summary>
-/// Default <see cref="IRepository{TEntity}"/> implementation over <see cref="AppDbContext"/>.
-/// Entity-specific repositories inherit this and add their own query methods.
+/// Default <see cref="IRepository{TEntity, TId}"/> implementation over <see cref="AppDbContext"/>.
+/// Aggregate-specific repositories inherit this and add their own query methods.
 /// </summary>
-public class Repository<TEntity> : IRepository<TEntity>
-    where TEntity : class
+public class Repository<TEntity, TId> : IRepository<TEntity, TId>
+    where TEntity : AggregateRoot<TId>
+    where TId : struct
 {
     protected AppDbContext DbContext { get; }
     protected DbSet<TEntity> Set { get; }
@@ -18,9 +20,9 @@ public class Repository<TEntity> : IRepository<TEntity>
         Set = dbContext.Set<TEntity>();
     }
 
-    public async Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<TEntity?> GetByIdAsync(TId id, CancellationToken cancellationToken = default)
     {
-        return await Set.FindAsync(new object[] { id }, cancellationToken);
+        return await Set.FindAsync([id], cancellationToken);
     }
 
     public async Task<IReadOnlyList<TEntity>> ListAsync(CancellationToken cancellationToken = default)
