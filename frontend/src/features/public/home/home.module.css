@@ -137,8 +137,18 @@
 }
 
 .heroContent {
-  max-width: 760px;
+  max-width: 920px;
   animation: fadeUp 0.7s ease both;
+}
+
+.heroEyebrow {
+  margin-bottom: 22px;
+  font-family: var(--font-display);
+  font-size: clamp(12px, 1.4vw, 15px);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-accent-soft);
 }
 
 .heroTitle {

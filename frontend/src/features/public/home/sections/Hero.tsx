@@ -10,6 +10,7 @@ export function Hero({ stats }: HeroProps) {
       <div className={styles.heroOverlay} aria-hidden="true" />
       <div className={styles.heroInner}>
         <div className={styles.heroContent}>
+          <p className={styles.heroEyebrow}>Mažoretky</p>
           <h1 className={styles.heroTitle}>
             Elegance
             <br />v každém pohybu

@@ -3,6 +3,15 @@ import { PublicLayout } from './components/Layout/PublicLayout'
 import { MemberLayout } from './components/Layout/MemberLayout'
 import { AdminLayout } from './components/Layout/AdminLayout'
 import { HomePage } from './features/public/HomePage'
+import { LoginPage } from './features/public/login/LoginPage'
+import { ApplyPage } from './features/public/apply/ApplyPage'
+import { GalleryPage } from './features/public/gallery/GalleryPage'
+import { AchievementsPage } from './features/public/achievements/AchievementsPage'
+import { CoachesPage } from './features/public/coaches/CoachesPage'
+import { EventsPage } from './features/public/events/EventsPage'
+import { SponsorsPage } from './features/public/sponsors/SponsorsPage'
+import { ContactPage } from './features/public/contact/ContactPage'
+import { PartnershipPage } from './features/public/partnership/PartnershipPage'
 import { DashboardPage } from './features/member/DashboardPage'
 import { AdminHomePage } from './features/admin/AdminHomePage'
 import { NotFound } from './components/NotFound'
@@ -17,6 +26,15 @@ export function App() {
       <Routes>
         <Route element={<PublicLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="apply" element={<ApplyPage />} />
+          <Route path="gallery" element={<GalleryPage />} />
+          <Route path="achievements" element={<AchievementsPage />} />
+          <Route path="coaches" element={<CoachesPage />} />
+          <Route path="events" element={<EventsPage />} />
+          <Route path="sponsors" element={<SponsorsPage />} />
+          <Route path="contact" element={<ContactPage />} />
+          <Route path="partnership" element={<PartnershipPage />} />
         </Route>
         <Route path="app" element={<MemberLayout />}>
           <Route index element={<DashboardPage />} />
