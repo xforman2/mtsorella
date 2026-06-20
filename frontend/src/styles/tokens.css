@@ -4,15 +4,28 @@
   --color-surface: #ffffff;
   --color-ink: #14211b;
   --color-ink-soft: #46544c;
+  --color-ink-muted: #5a6b62;
   --color-muted: #9aa89f;
   --color-primary: #047b46;
+  --color-primary-deep: #035c34;
   --color-primary-strong: #03331e;
   --color-accent: #0a9d5a;
   --color-accent-soft: #9fe3c2;
+  --color-track: #eef2ef;
 
-  /* Typography (FR-S6: Bricolage Grotesque + Inter) */
+  /* Hero stripe gradient */
+  --hero-stripe-a: #0a6b41;
+  --hero-stripe-b: #0c7547;
+
+  /* Typography (FR-S6: Bricolage Grotesque + Inter; JetBrains Mono for data) */
   --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Layout */
+  --content-max: 1240px;
+  --section-pad-y: clamp(64px, 9vw, 120px);
+  --section-pad-x: clamp(24px, 5vw, 80px);
 
   /* Scale */
   --radius: 14px;

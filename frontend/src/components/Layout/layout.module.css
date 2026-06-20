@@ -55,3 +55,9 @@
   margin: 0 auto;
   padding: clamp(32px, 5vw, 64px) clamp(20px, 4vw, 56px);
 }
+
+/* Full-bleed main: the page owns its per-section max-width containers (public site). */
+.mainFull {
+  flex: 1;
+  width: 100%;
+}
