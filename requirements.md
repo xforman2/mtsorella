@@ -225,7 +225,7 @@ The client-side part (what the user sees and interacts with in the browser).
 | FE-3 | Conditional rendering of navigation and sections based on role (guest / member / admin). | FR-S4–S5 |
 | FE-4 | Consistent design system: colors, typography (Bricolage Grotesque + Inter), components. | FR-S6 |
 | FE-5 | Drag-and-drop photo slots with local storage (localStorage) — hero, about, majorette, and camp photos. | FR-S7 |
-| FE-16 | Date-driven unlock of the camp application: compare the current date with the registration-open date to render the locked countdown vs. the open form; overridable via the `taborPrihlaska` tweak (`auto` / `open` / `locked`). | FR-P36, FR-P37 |
+| FE-16 | Date-driven unlock of the camp application: compare the current date with the registration-open date to render the locked countdown vs. the open form; overridable via the `registrationOverride` tweak (`auto` / `open` / `locked`). | FR-P36, FR-P37 |
 | FE-6 | Lightbox / modals (gallery, member detail, challenge detail, profile editing, account creation). | FR-P12, FR-M13, FR-M25, FR-M39, FR-A4 |
 | FE-7 | Client-side filtering and sorting (gallery, achievements, members, leaderboard, board). | FR-P11, FR-P15, FR-M12, FR-M30, FR-M21 |
 | FE-8 | Client-side form validation (required fields, email format, consent). | FR-P28–P33, FR-M1 |
@@ -308,5 +308,5 @@ The server-side part (data, logic, authentication, storage). Not implemented in 
 - Calendar export (`.ics`) is fully functional and opens in Google / Apple / Outlook calendars.
 - Photo slots store images locally in the browser (localStorage).
 - The whole prototype is in **Czech**.
-- There is a **single upcoming camp**; its application unlocks automatically on the registration-open date. The locked/open state can be previewed with the `taborPrihlaska` tweak (`auto` / `open` / `locked`).
+- There is a **single upcoming camp**; its application unlocks automatically on the registration-open date. The locked/open state can be previewed with the `registrationOverride` tweak (`auto` / `open` / `locked`).
 - Production deployment requires a backend (authentication, database, video and photo storage, email sending).

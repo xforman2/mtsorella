@@ -1,6 +1,6 @@
 import admin from '../shared/admin.module.css'
 import styles from './CampsPage.module.css'
-import { computeCampStatus, pastCamps, upcomingCamp } from '../../public/tabory/mockData'
+import { computeCampStatus, pastCamps, upcomingCamp } from '../../public/camps/mockData'
 
 /**
  * Admin camps management (FR-A15). The upcoming-camp editor + past-camps list are
