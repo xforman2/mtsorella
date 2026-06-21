@@ -1,6 +1,6 @@
 /**
  * Tábory (summer camps) dummy data + date-driven unlock.
- * Swap for API calls later (#3). Shared by the public /tabory page and the
+ * Swap for API calls later (#3). Shared by the public /camps page and the
  * admin /admin/camps view (FR-P34–P38, FR-A15, FE-16).
  */
 
@@ -73,12 +73,12 @@ export const pastCamps: PastCamp[] = [
 ]
 
 /**
- * Application unlock override — the prototype's `taborPrihlaska` tweak (FE-16).
+ * Application unlock override — the prototype's registration tweak (FE-16).
  * 'auto' compares today with `openISO`; 'open' / 'locked' force the state.
  * Flip to 'open' to preview the application form before the open date.
  */
 export type CampOverride = 'auto' | 'open' | 'locked'
-export const taborPrihlaska: CampOverride = 'auto'
+export const registrationOverride: CampOverride = 'auto'
 
 export interface CampStatus {
   open: boolean
@@ -98,7 +98,7 @@ const DAY_MS = 86_400_000
  */
 export function computeCampStatus(
   camp: UpcomingCamp,
-  override: CampOverride = taborPrihlaska,
+  override: CampOverride = registrationOverride,
   now: Date = new Date(),
 ): CampStatus {
   const openDate = new Date(camp.openISO + 'T00:00:00')

@@ -1,21 +1,21 @@
 import { useState } from 'react'
 import ui from '../shared/ui.module.css'
-import styles from './TaboryPage.module.css'
+import styles from './CampsPage.module.css'
 import {
   computeCampStatus,
   pastCamps,
-  taborPrihlaska,
+  registrationOverride,
   upcomingCamp,
   type CampOverride,
 } from './mockData'
 
 /**
- * Public Tábory (summer camps) page. The application is date-driven (FE-16):
- * locked with a countdown until the open date, then a working form that submits
- * to a local confirmation (no backend yet, #3). `override` mirrors the prototype's
- * `taborPrihlaska` tweak — pass 'open' / 'locked' to force a state.
+ * Public camps (Tábory) page. The application is date-driven (FE-16): locked with
+ * a countdown until the open date, then a working form that submits to a local
+ * confirmation (no backend yet, #3). `override` mirrors the prototype's
+ * registration tweak — pass 'open' / 'locked' to force a state.
  */
-export function TaboryPage({ override = taborPrihlaska }: { override?: CampOverride }) {
+export function CampsPage({ override = registrationOverride }: { override?: CampOverride }) {
   const [sent, setSent] = useState(false)
   const status = computeCampStatus(upcomingCamp, override)
 
