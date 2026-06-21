@@ -8,6 +8,7 @@ import { ApplyPage } from './features/public/apply/ApplyPage'
 import { GalleryPage } from './features/public/gallery/GalleryPage'
 import { AchievementsPage } from './features/public/achievements/AchievementsPage'
 import { CoachesPage } from './features/public/coaches/CoachesPage'
+import { TaboryPage } from './features/public/tabory/TaboryPage'
 import { EventsPage } from './features/public/events/EventsPage'
 import { SponsorsPage } from './features/public/sponsors/SponsorsPage'
 import { ContactPage } from './features/public/contact/ContactPage'
@@ -39,6 +40,7 @@ export function App() {
           <Route path="gallery" element={<GalleryPage />} />
           <Route path="achievements" element={<AchievementsPage />} />
           <Route path="coaches" element={<CoachesPage />} />
+          <Route path="tabory" element={<TaboryPage />} />
           <Route path="events" element={<EventsPage />} />
           <Route path="sponsors" element={<SponsorsPage />} />
           <Route path="contact" element={<ContactPage />} />
