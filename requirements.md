@@ -19,6 +19,7 @@ The system has **three access layers**:
 | FR-S4 | The system distinguishes three roles: guest (not logged in), member, admin (coach). |
 | FR-S5 | Navigation and available sections change based on the user's role. |
 | FR-S6 | Consistent visual style: green color palette, Bricolage Grotesque + Inter fonts, minimal emoji. |
+| FR-S8 | All interface copy is in **Czech**. Club is based in Brno (CZ); championships, contacts (.cz, +420) and venues are localized accordingly. |
 | FR-S7 | Photos are added via drag-and-drop slots (hero, "About us", majorette of the month) that persist locally. |
 
 ---
@@ -67,6 +68,15 @@ The system has **three access layers**:
 | FR-P21 | List of upcoming performances and events with date, location, and type. |
 | FR-P22 | Each performance has an "+ Add to calendar" button — export to `.ics`. |
 | FR-P23 | "Export all to calendar" button — export the entire list to `.ics`. |
+
+### 2.5a Camps
+| ID | Requirement |
+|----|-----------|
+| FR-P34 | Dedicated **"Tábory"** (summer day-camp) section, reachable from the main navigation and the footer. |
+| FR-P35 | A single highlighted **upcoming camp** card: photo slot, name, dates, location, age range, price, and description. Only one upcoming camp exists at a time. |
+| FR-P36 | The camp application (**"přihláška"**) is an *unlockable* element. While registration is not yet open it is **locked**: it shows a padlock, an explanatory message, a countdown of days remaining, and a disabled button. |
+| FR-P37 | When the registration-open date is reached (or an admin opens it manually) the application **unlocks** into a working form — child's name, date of birth, parent's name, e-mail, phone, note, and consent — with a submitted/confirmation state. |
+| FR-P38 | **Past camps** are shown as a grid of cards with photo slots, year badge, dates, location, number of children, and a short description. |
 
 ### 2.6 Sponsors
 | ID | Requirement |
@@ -200,6 +210,7 @@ The system has **three access layers**:
 | FR-A12 | Majorette & goals: selecting the majorette of the month + setting the team goal. |
 | FR-A13 | Sponsors: managing partners displayed on the site (add, edit, remove). |
 | FR-A14 | Statistics: key metrics (team points, attendance, completed challenges, medals) + member breakdown by category. |
+| FR-A15 | Camps (Tábory): edit the upcoming camp (name, dates, location, age, price, capacity, description, **registration-open date**, manual "open now" toggle) with a live status banner (locked / open); manage past camps (add, edit, remove). |
 
 ---
 
@@ -213,7 +224,8 @@ The client-side part (what the user sees and interacts with in the browser).
 | FE-2 | Routing between screens without reload (public area, member zone, admin). | FR-S4–S5 |
 | FE-3 | Conditional rendering of navigation and sections based on role (guest / member / admin). | FR-S4–S5 |
 | FE-4 | Consistent design system: colors, typography (Bricolage Grotesque + Inter), components. | FR-S6 |
-| FE-5 | Drag-and-drop photo slots with local storage (localStorage). | FR-S7 |
+| FE-5 | Drag-and-drop photo slots with local storage (localStorage) — hero, about, majorette, and camp photos. | FR-S7 |
+| FE-16 | Date-driven unlock of the camp application: compare the current date with the registration-open date to render the locked countdown vs. the open form; overridable via the `taborPrihlaska` tweak (`auto` / `open` / `locked`). | FR-P36, FR-P37 |
 | FE-6 | Lightbox / modals (gallery, member detail, challenge detail, profile editing, account creation). | FR-P12, FR-M13, FR-M25, FR-M39, FR-A4 |
 | FE-7 | Client-side filtering and sorting (gallery, achievements, members, leaderboard, board). | FR-P11, FR-P15, FR-M12, FR-M30, FR-M21 |
 | FE-8 | Client-side form validation (required fields, email format, consent). | FR-P28–P33, FR-M1 |
@@ -252,6 +264,7 @@ The server-side part (data, logic, authentication, storage). Not implemented in 
 | BE-12 | CRUD for sponsors. | FR-A13 |
 | BE-13 | Gallery management (categories, years, photo metadata). | FR-P10 |
 | BE-14 | Selecting the majorette of the month and managing team goals. | FR-A12, FR-M32 |
+| BE-14a | CRUD for camps (upcoming + past) incl. registration-open date; the application gate opens automatically on that date (or by manual admin override). | FR-A15, FR-P36, FR-P37 |
 
 ### 6.3 Gamification and Points System
 | ID | Requirement | Related to |
@@ -294,4 +307,6 @@ The server-side part (data, logic, authentication, storage). Not implemented in 
 - Real data (photos, logo, member names, contacts) is replaced with realistic placeholder content.
 - Calendar export (`.ics`) is fully functional and opens in Google / Apple / Outlook calendars.
 - Photo slots store images locally in the browser (localStorage).
+- The whole prototype is in **Czech**.
+- There is a **single upcoming camp**; its application unlocks automatically on the registration-open date. The locked/open state can be previewed with the `taborPrihlaska` tweak (`auto` / `open` / `locked`).
 - Production deployment requires a backend (authentication, database, video and photo storage, email sending).
