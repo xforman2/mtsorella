@@ -37,7 +37,8 @@ backend/
 │   ├── Persistence/                     # AppDbContext, Migrations/
 │   │   └── Repositories/                # IRepository<T>/Repository<T> + per-aggregate repos
 │   └── Features/<Area>/<Feature>.cs     # the slices
-└── tests/Mtsorella.Api.Tests/           # xUnit, mirrors src/ ([[test-suite]])
+├── tests/Mtsorella.Api.Tests/           # fast xUnit unit tests, mirrors src/ ([[test-suite]])
+└── tests/Mtsorella.Api.IntegrationTests/ # Testcontainers + PostgreSQL; needs Docker ([[test-suite]])
 ```
 - One file per slice while small; split a slice into its own folder once the file gets long
   (~150–200 lines) — never split it across the old technical-layer folders.
@@ -235,9 +236,12 @@ prefer them over "purer" alternatives that add coupling or ceremony:
 ## Commands
 ```bash
 dotnet build backend/Mtsorella.slnx
-dotnet test  backend/Mtsorella.slnx                 # see [[test-suite]]
+dotnet test  backend/Mtsorella.slnx                 # unit + integration (integration needs Docker); see [[test-suite]]
+dotnet test  backend/tests/Mtsorella.Api.Tests/Mtsorella.Api.Tests.csproj  # fast unit suite only
 dotnet run   --project backend/src/Mtsorella.Api    # /scalar, /openapi/v1.json, /health
 cd backend && dotnet ef migrations add <Name> --project src/Mtsorella.Api --output-dir Persistence/Migrations
 ```
+New EF mappings are only proven once an integration round-trip persists the aggregate against real
+PostgreSQL — SQLite and migration generation both accept mappings that fail at runtime on Npgsql.
 Adding a new feature = add one `Features/<Area>/<Feature>.cs` implementing `IEndpoint`. Nothing in
 `Program.cs` changes. Add/adjust tests in the same change and keep the suite green before merge.

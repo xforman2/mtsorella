@@ -4,5 +4,6 @@
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Mtsorella.Api.Tests/Mtsorella.Api.Tests.csproj" />
+    <Project Path="tests/Mtsorella.Api.IntegrationTests/Mtsorella.Api.IntegrationTests.csproj" />
   </Folder>
 </Solution>

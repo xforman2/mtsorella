@@ -58,6 +58,28 @@ Prefer per-path triggers using `paths:` on the workflow, or split into `ci-backe
 don't run both. For required-check stability on a monorepo, a `paths`-based `dorny/paths-filter`
 gate job is a good middle ground.
 
+Backend CI is implemented this way: **`.github/workflows/ci-backend.yml`**, path-filtered to
+`backend/**` (+ the workflow file itself), running build + the full test suite + coverage on `ubuntu-latest`.
+Frontend CI (`ci-frontend.yml`) is still to come.
+
+## Integration tests (Docker / Testcontainers)
+The integration suite uses `Testcontainers.PostgreSql` (see [[test-suite]]). `ubuntu-latest` ships a Docker
+daemon, so `dotnet test backend/Mtsorella.slnx` runs unit **and** integration tests natively — no `services:`
+block (Testcontainers manages its own container). If Docker Hub anonymous-pull rate limits ever flake the
+job, add a `docker/login-action@v3` step with a `DOCKERHUB_TOKEN` secret before the test step.
+
+## Coverage in CI
+Report coverage in the run itself — no external service needed:
+- Collect with coverlet during the test step: `dotnet test ... --collect:"XPlat Code Coverage" --results-directory backend/TestResults` (every test project references `coverlet.collector`).
+- Turn the Cobertura XML into a GitHub-flavored summary with the pinned `dotnet-reportgenerator-globaltool`
+  (`backend/.config/dotnet-tools.json`; run `dotnet tool restore` from `backend/`):
+  `reportgenerator -reports:"TestResults/**/coverage.cobertura.xml" -targetdir:TestResults/coverage-report -reporttypes:"MarkdownSummaryGithub;Html" -filefilters:"-**/Migrations/*" -classfilters:"-Mediator.*;-Microsoft.*;-System.*"`.
+- Append `SummaryGithub.md` to `$GITHUB_STEP_SUMMARY` (renders on the run page) and upload the HTML folder
+  via `actions/upload-artifact@v4`. Guard these steps with `if: ${{ !cancelled() }}` so coverage still shows
+  when a test fails. The `-filefilters`/`-classfilters` drop migrations and generated Mediator/OpenAPI/framework
+  code so the headline % reflects our own code (the same filters [[test-suite]] uses locally).
+- Report-only for now (no threshold/gate); add a soft floor once real feature slices exist.
+
 ## Conventions
 - Pin actions to a major version (`@v4`). Keep secrets in repo/Org secrets, never inline.
 - Build + test commands must match [[test-suite]]; a green run is required before merge ([[pr-review]]).
