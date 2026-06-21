@@ -24,6 +24,16 @@ import { GoalsPage } from './features/member/goals/GoalsPage'
 import { AdminDashboardPage } from './features/admin/dashboard/AdminDashboardPage'
 import { MembersPage } from './features/admin/members/MembersPage'
 import { CampsPage as AdminCampsPage } from './features/admin/camps/CampsPage'
+import { AdminTrainersPage } from './features/admin/trainers/AdminTrainersPage'
+import { VideosPage } from './features/admin/videos/VideosPage'
+import { ChallengesPage as AdminChallengesPage } from './features/admin/challenges/ChallengesPage'
+import { TrainingsPage as AdminTrainingsPage } from './features/admin/trainings/TrainingsPage'
+import { AdminEventsPage } from './features/admin/events/AdminEventsPage'
+import { BoardPage as AdminBoardPage } from './features/admin/board/BoardPage'
+import { AdminAchievementsPage } from './features/admin/achievements/AdminAchievementsPage'
+import { AdminMotmPage } from './features/admin/motm/AdminMotmPage'
+import { AdminSponsorsPage } from './features/admin/sponsors/AdminSponsorsPage'
+import { AdminStatsPage } from './features/admin/stats/AdminStatsPage'
 import { NotFound } from './components/NotFound'
 
 /**
@@ -60,7 +70,17 @@ export function App() {
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboardPage />} />
           <Route path="members" element={<MembersPage />} />
+          <Route path="trainers" element={<AdminTrainersPage />} />
+          <Route path="videos" element={<VideosPage />} />
+          <Route path="challenges" element={<AdminChallengesPage />} />
+          <Route path="trainings" element={<AdminTrainingsPage />} />
+          <Route path="events" element={<AdminEventsPage />} />
           <Route path="camps" element={<AdminCampsPage />} />
+          <Route path="board" element={<AdminBoardPage />} />
+          <Route path="achievements" element={<AdminAchievementsPage />} />
+          <Route path="motm" element={<AdminMotmPage />} />
+          <Route path="sponsors" element={<AdminSponsorsPage />} />
+          <Route path="stats" element={<AdminStatsPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
