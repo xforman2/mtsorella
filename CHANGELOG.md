@@ -7,6 +7,12 @@ All notable changes to this project are documented here, following
 
 ### Added
 
+- Backend CI via GitHub Actions (issue #14) — `.github/workflows/ci-backend.yml`, path-filtered to
+  `backend/**`, runs restore (locked mode) → build → the full test suite (unit + Testcontainers
+  PostgreSQL integration; `ubuntu-latest` ships Docker) on pushes to `main` and PRs. Coverage is
+  collected with coverlet and rendered into the run summary (a Markdown table via ReportGenerator's
+  `MarkdownSummaryGithub`), with the full HTML report uploaded as an artifact — no external service or
+  secrets. Report-only (no gate yet); generated code and migrations are filtered out of the headline %.
 - Test infrastructure for the persistence layer (issue #30) — a new
   `backend/tests/Mtsorella.Api.IntegrationTests` project running container-backed tests against real
   PostgreSQL via `Testcontainers.PostgreSql`: a shared-container fixture that applies the migrations and

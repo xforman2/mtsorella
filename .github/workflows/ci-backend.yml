@@ -1,0 +1,69 @@
+name: CI – Backend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/ci-backend.yml'
+  pull_request:
+    paths:
+      - 'backend/**'
+      - '.github/workflows/ci-backend.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-backend-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest # Docker is preinstalled, so the Testcontainers integration suite runs natively
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.x'
+          cache: true
+          cache-dependency-path: backend/**/packages.lock.json
+
+      - name: Restore
+        run: dotnet restore backend/Mtsorella.slnx --locked-mode
+
+      - name: Restore local tools (reportgenerator)
+        run: dotnet tool restore
+        working-directory: backend
+
+      - name: Build
+        run: dotnet build backend/Mtsorella.slnx --no-restore
+
+      - name: Test with coverage (unit + integration)
+        run: >
+          dotnet test backend/Mtsorella.slnx --no-build
+          --collect:"XPlat Code Coverage"
+          --results-directory backend/TestResults
+
+      - name: Generate coverage report
+        if: ${{ !cancelled() }}
+        working-directory: backend
+        run: >
+          dotnet reportgenerator
+          -reports:"TestResults/**/coverage.cobertura.xml"
+          -targetdir:TestResults/coverage-report
+          -reporttypes:"MarkdownSummaryGithub;Html"
+          -filefilters:"-**/Migrations/*"
+          -classfilters:"-Mediator.*;-Microsoft.*;-System.*"
+
+      - name: Publish coverage to run summary
+        if: ${{ !cancelled() }}
+        run: cat backend/TestResults/coverage-report/SummaryGithub.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload coverage HTML
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-coverage-report
+          path: backend/TestResults/coverage-report
