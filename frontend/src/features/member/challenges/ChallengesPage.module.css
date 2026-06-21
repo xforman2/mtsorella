@@ -1,0 +1,259 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(4, 123, 70, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: repeating-linear-gradient(135deg, #1c3528 0 16px, #16291f 16px 32px);
+}
+
+.thumbCenter {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.play {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(4px);
+  font-size: 22px;
+  color: #fff;
+}
+
+.thumbLabel {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+}
+
+.body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.chipRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusChip {
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.cat {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.title {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.desc {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+  flex: 1;
+}
+
+.footRow {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.deadline {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.deadlinePts {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.uploadBtn {
+  padding: 10px 18px;
+  border-radius: 11px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primary);
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.uploadBtn:hover {
+  background: var(--color-primary-deep);
+}
+
+/* history */
+.histList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.histRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid rgba(4, 123, 70, 0.08);
+}
+
+.histMain {
+  flex: 1;
+  min-width: 180px;
+}
+
+.histTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.histCat {
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--color-muted);
+}
+
+.histScore {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* detail modal */
+.dialog {
+  width: min(560px, 94vw);
+  max-height: 90vh;
+  overflow: auto;
+  border-radius: 22px;
+  background: #fff;
+}
+
+.modalThumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: repeating-linear-gradient(135deg, #1c3528 0 16px, #16291f 16px 32px);
+}
+
+.modalPlay {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(4px);
+  font-size: 26px;
+  color: #fff;
+}
+
+.modalClose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 22px;
+  color: var(--color-ink);
+}
+
+.modalBody {
+  padding: 28px;
+}
+
+.modalTitle {
+  margin-top: 14px;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.modalDesc {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--color-ink-soft);
+}
+
+.dropzone {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px;
+  border-radius: 16px;
+  border: 2px dashed rgba(4, 123, 70, 0.25);
+  background: var(--color-bg);
+  text-align: center;
+}
+
+.dropTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.dropSub {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.dropBtn {
+  margin-top: 10px;
+  padding: 11px 22px;
+  border-radius: 11px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primary);
+  cursor: not-allowed;
+}
