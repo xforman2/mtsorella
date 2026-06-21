@@ -1,0 +1,388 @@
+/* Tábory (summer camps) page — values 1:1 with prototype/MT Sorella.html. */
+
+/* ---- hero ---- */
+.hero {
+  padding: clamp(48px, 7vw, 90px) clamp(24px, 5vw, 80px);
+}
+
+.heroInner {
+  position: relative;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+/* ---- upcoming camp + application grid ---- */
+.grid {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: clamp(40px, 5vw, 72px) clamp(24px, 5vw, 80px) clamp(20px, 3vw, 36px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
+
+.upcoming {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 22px;
+  background: var(--color-surface);
+  border: 1px solid rgba(4, 123, 70, 0.1);
+  box-shadow: 0 18px 44px -26px rgba(16, 40, 28, 0.24);
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: repeating-linear-gradient(135deg, #e9efe9 0 16px, #e0e7e1 16px 32px);
+}
+
+.badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-primary-strong);
+  background: var(--color-accent);
+}
+
+.photoLabel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #8aa093;
+  text-transform: uppercase;
+}
+
+.upcomingBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(22px, 3vw, 30px);
+}
+
+.campName {
+  font-family: var(--font-display);
+  font-size: clamp(23px, 3vw, 30px);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+
+.campDesc {
+  margin-top: 12px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--color-ink-muted);
+}
+
+.details {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.detail {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--color-bg);
+}
+
+.detailLabel {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.detailValue {
+  display: block;
+  margin-top: 3px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+/* ---- application card ---- */
+.apply {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 3vw, 34px);
+  border-radius: 22px;
+  background: var(--color-surface);
+  border: 1px solid rgba(4, 123, 70, 0.1);
+  box-shadow: 0 18px 44px -26px rgba(16, 40, 28, 0.24);
+}
+
+/* locked state */
+.locked {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 14px;
+  padding: 8px 4px;
+}
+
+.lockIcon {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  font-size: 30px;
+  background: rgba(176, 128, 40, 0.12);
+}
+
+.lockedTitle {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.lockedText {
+  max-width: 360px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+}
+
+.countdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(176, 128, 40, 0.12);
+}
+
+.countNum {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  color: #9a6b1f;
+}
+
+.countText {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+  color: #9a6b1f;
+}
+
+.lockedBtn {
+  width: 100%;
+  max-width: 320px;
+  margin-top: 8px;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-muted);
+  background: #f2f4f1;
+  border: 1px solid rgba(16, 40, 28, 0.08);
+  cursor: not-allowed;
+}
+
+/* open state */
+.statusBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.statusLabel {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.openBadge {
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: rgba(4, 123, 70, 0.1);
+}
+
+.formTitle {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* confirmation state */
+.confirm {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+  padding: 28px 12px;
+}
+
+.confirmIcon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  font-size: 30px;
+  color: var(--color-primary);
+  background: rgba(4, 123, 70, 0.1);
+}
+
+.confirmTitle {
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.confirmText {
+  max-width: 340px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+}
+
+.resetBtn {
+  margin-top: 4px;
+  padding: 11px 20px;
+  border-radius: 11px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: transparent;
+  border: 1px solid rgba(4, 123, 70, 0.2);
+  cursor: pointer;
+}
+
+/* ---- past camps ---- */
+.pastSection {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: clamp(24px, 3vw, 40px) clamp(24px, 5vw, 80px) clamp(64px, 8vw, 110px);
+}
+
+.pastGrid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.pastCard {
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--color-surface);
+  border: 1px solid rgba(4, 123, 70, 0.08);
+  box-shadow: 0 14px 34px -24px rgba(16, 40, 28, 0.22);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.pastCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 46px -24px rgba(16, 40, 28, 0.28);
+}
+
+.pastPhoto {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: repeating-linear-gradient(135deg, #e9efe9 0 16px, #e0e7e1 16px 32px);
+}
+
+.yearBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-primary-strong);
+  background: rgba(159, 227, 194, 0.92);
+}
+
+.pastBody {
+  padding: 22px;
+}
+
+.pastName {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.pastDates {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.pastDesc {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+}
+
+.pastFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(4, 123, 70, 0.08);
+}
+
+.pastPlace {
+  font-size: 13px;
+  color: var(--color-ink-soft);
+}
+
+.pastKids {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-primary);
+}

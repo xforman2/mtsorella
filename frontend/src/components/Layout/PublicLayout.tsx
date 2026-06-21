@@ -7,6 +7,7 @@ const navItems: { to: string; label: string; end?: boolean }[] = [
   { to: '/gallery', label: 'Galerie' },
   { to: '/achievements', label: 'Úspěchy' },
   { to: '/coaches', label: 'Trenéři' },
+  { to: '/tabory', label: 'Tábory' },
   { to: '/events', label: 'Vystoupení' },
   { to: '/sponsors', label: 'Sponzoři' },
   { to: '/contact', label: 'Kontakt' },
