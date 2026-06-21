@@ -1,11 +1,19 @@
 using System.Text.Json;
+using Mtsorella.Api.Domain.Announcements;
+using Mtsorella.Api.Domain.Challenges;
 using Mtsorella.Api.Domain.Common;
+using Mtsorella.Api.Domain.Inbox;
 using Mtsorella.Api.Domain.Members;
+using Mtsorella.Api.Domain.TeamGoals;
+using Mtsorella.Api.Domain.Trainings;
+// Disambiguate from System.ApplicationId, which ImplicitUsings brings into scope via `using System;`.
+using ApplicationId = Mtsorella.Api.Domain.Common.ApplicationId;
 
 namespace Mtsorella.Api.Tests.Persistence.Outbox;
 
-// Guards the wire format the outbox relies on: every event must survive serialize -> store EventType ->
-// resolve the type -> deserialize, including strongly-typed ids (record structs) and enum payloads.
+// Guards the wire format the outbox relies on: every domain event must survive serialize -> store EventType
+// -> resolve the type -> deserialize, including strongly-typed ids (record structs), enum and
+// DateTimeOffset payloads. Every IDomainEvent is covered, since any of them can land in the outbox.
 public class OutboxSerializationTests
 {
     public static TheoryData<IDomainEvent> Events =>
@@ -15,6 +23,15 @@ public class OutboxSerializationTests
         new MemberLeveledUp(MemberId.New(), 2, LevelName.Improver),
         new BadgeEarned(MemberId.New(), BadgeId.New()),
         new StreakMilestoneReached(MemberId.New(), 7),
+        new TrainingScheduled(TrainingId.New(), DateTimeOffset.UtcNow),
+        new TrainingAttendanceConfirmed(TrainingId.New(), MemberId.New(), 10),
+        new ChallengeCreated(ChallengeId.New(), CoachId.New()),
+        new ChallengeSubmissionCreated(ChallengeSubmissionId.New(), ChallengeId.New(), MemberId.New()),
+        new ChallengeSubmissionReviewed(ChallengeSubmissionId.New(), ChallengeId.New(), MemberId.New(), 30),
+        new AnnouncementPublished(AnnouncementId.New(), CoachId.New()),
+        new AnnouncementPinned(AnnouncementId.New()),
+        new ApplicationSubmitted(ApplicationId.New()),
+        new TeamGoalCompleted(TeamGoalId.New()),
     ];
 
     private static readonly JsonSerializerOptions Options = new(JsonSerializerDefaults.Web);
