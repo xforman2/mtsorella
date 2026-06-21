@@ -1,0 +1,120 @@
+/* Admin camps view — values 1:1 with prototype/MT Sorella.html (admin Tábory block). */
+
+.hint {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+
+/* live status banner (locked / open) */
+.statusBanner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 13px 16px;
+  border-radius: 12px;
+}
+
+.statusDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.statusLabel {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.statusSub {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+/* editor form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin-top: 16px;
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.dateLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-ink-soft);
+}
+
+.override {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  color: var(--color-ink-soft);
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+/* past camps list */
+.addBtn {
+  padding: 9px 16px;
+  border-radius: 11px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primary);
+  cursor: pointer;
+}
+
+.addBtn:disabled {
+  cursor: not-allowed;
+}
+
+.yearBadge {
+  width: 42px;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.editBtn {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.deleteBtn {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #c2453a;
+  cursor: pointer;
+}
+
+.editBtn:disabled,
+.deleteBtn:disabled {
+  cursor: not-allowed;
+}

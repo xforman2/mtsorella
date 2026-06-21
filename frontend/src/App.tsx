@@ -23,6 +23,7 @@ import { BoardPage as MemberBoardPage } from './features/member/board/BoardPage'
 import { GoalsPage } from './features/member/goals/GoalsPage'
 import { AdminDashboardPage } from './features/admin/dashboard/AdminDashboardPage'
 import { MembersPage } from './features/admin/members/MembersPage'
+import { CampsPage } from './features/admin/camps/CampsPage'
 import { NotFound } from './components/NotFound'
 
 /**
@@ -59,6 +60,7 @@ export function App() {
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboardPage />} />
           <Route path="members" element={<MembersPage />} />
+          <Route path="camps" element={<CampsPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
