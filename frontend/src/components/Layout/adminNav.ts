@@ -7,6 +7,7 @@ export const adminNav: { to: string; label: string; end?: boolean }[] = [
   { to: '/admin/challenges', label: 'Výzvy' },
   { to: '/admin/trainings', label: 'Tréninky' },
   { to: '/admin/events', label: 'Vystoupení' },
+  { to: '/admin/camps', label: 'Tábory' },
   { to: '/admin/board', label: 'Nástěnka' },
   { to: '/admin/achievements', label: 'Úspěchy' },
   { to: '/admin/motm', label: 'Mažoretka & cíle' },
