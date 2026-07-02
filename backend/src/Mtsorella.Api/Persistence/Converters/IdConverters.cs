@@ -98,3 +98,8 @@ public sealed class ContactMessageIdConverter : ValueConverter<ContactMessageId,
 {
     public ContactMessageIdConverter() : base(id => id.Value, value => new ContactMessageId(value)) { }
 }
+
+public sealed class UserAccountIdConverter : ValueConverter<UserAccountId, Guid>
+{
+    public UserAccountIdConverter() : base(id => id.Value, value => new UserAccountId(value)) { }
+}

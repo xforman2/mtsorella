@@ -8,6 +8,7 @@ using Mtsorella.Api.Domain.Common;
 using Mtsorella.Api.Domain.Common.ValueObjects;
 using Mtsorella.Api.Domain.Gallery;
 using Mtsorella.Api.Domain.Highlights;
+using Mtsorella.Api.Domain.Identity;
 using Mtsorella.Api.Domain.Inbox;
 using Mtsorella.Api.Domain.Members;
 using Mtsorella.Api.Domain.Performances;
@@ -48,6 +49,7 @@ public class AppDbContext : DbContext
     public DbSet<Application> Applications => Set<Application>();
     public DbSet<PartnershipInquiry> PartnershipInquiries => Set<PartnershipInquiry>();
     public DbSet<ContactMessage> ContactMessages => Set<ContactMessage>();
+    public DbSet<UserAccount> UserAccounts => Set<UserAccount>();
 
     // Domain events persisted in the same transaction as the aggregate change; drained by OutboxProcessor.
     public DbSet<OutboxMessage> OutboxMessages => Set<OutboxMessage>();
@@ -89,5 +91,6 @@ public class AppDbContext : DbContext
         configurationBuilder.Properties<ApplicationId>().HaveConversion<ApplicationIdConverter>();
         configurationBuilder.Properties<PartnershipInquiryId>().HaveConversion<PartnershipInquiryIdConverter>();
         configurationBuilder.Properties<ContactMessageId>().HaveConversion<ContactMessageIdConverter>();
+        configurationBuilder.Properties<UserAccountId>().HaveConversion<UserAccountIdConverter>();
     }
 }

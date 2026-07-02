@@ -92,3 +92,8 @@ public readonly record struct ContactMessageId(Guid Value)
 {
     public static ContactMessageId New() => new(Guid.NewGuid());
 }
+
+public readonly record struct UserAccountId(Guid Value)
+{
+    public static UserAccountId New() => new(Guid.NewGuid());
+}
