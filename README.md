@@ -8,7 +8,7 @@ members' gamification zone, and an admin panel for coaches.
 ```
 mtsorella/
   frontend/        React + Vite + TypeScript app  (this is scaffolded)
-  backend/         ASP.NET Core (.NET 10) Web API  (planned — issue #3)
+  backend/         ASP.NET Core (.NET 10) Web API  (domain, persistence, auth)
   prototype/       Self-contained hi-fi prototype (design reference)
   requirements.md  Functional requirements (FR / FE / BE)
   .claude/skills/  Claude Code skills (conventions for this repo)
@@ -17,7 +17,8 @@ mtsorella/
 ## Prerequisites
 
 - Node.js ≥ 20 (developed on Node 26) + npm — for the frontend
-- .NET 10 SDK — for the backend (once scaffolded)
+- .NET 10 SDK — for the backend
+- Docker — only for the backend's Testcontainers integration tests
 
 ## Frontend
 
@@ -32,8 +33,16 @@ See [`frontend/README.md`](frontend/README.md) for all scripts, env vars, and st
 
 ## Backend
 
-Not yet scaffolded — tracked in issue #3 (owned by @mf-16). It will live under `backend/`
-(ASP.NET Core Web API on .NET 10).
+```bash
+cd backend
+dotnet tool restore
+dotnet ef database update --project src/Mtsorella.Api
+dotnet run --project src/Mtsorella.Api   # /scalar, /openapi/v1.json, /health
+```
+
+ASP.NET Core (.NET 10) Web API — Vertical Slice Architecture over PostgreSQL, with the domain +
+persistence layers, the transactional outbox, and email/password auth (JWT). See
+[`backend/README.md`](backend/README.md) for setup, configuration (including required secrets), and tests.
 
 ## Conventions
 

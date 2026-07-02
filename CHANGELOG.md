@@ -7,6 +7,16 @@ All notable changes to this project are documented here, following
 
 ### Added
 
+- Authentication & authorization (M0) — a lean, native stack (own `UserAccount` aggregate, Identity's
+  `PasswordHasher<T>`, JWT bearer tokens), **not** full ASP.NET Core Identity. Email + password login
+  (`POST /auth/login` → `{ token, mustChangePassword }`); admin-provisioned accounts created from an
+  accepted application (`POST /admin/accounts` — creates the Member + login account, accepts the
+  application, returns a one-time temporary password); forced first-login password change
+  (`POST /auth/change-password`); and an admin prihlášky list (`GET /admin/applications`). Includes
+  role-based guards (`Admin`/`Member` policies), an `ICurrentUser` claims accessor, a config-seeded first
+  admin, and the `AddUserAccounts` migration. The signing key and admin seed come from secrets
+  (`Jwt__Secret`, `Admin__Email`/`Admin__Password`) and are never committed; the app falls back to a
+  random per-process key when the secret is unset so dev/test/CI still boot.
 - Backend CI via GitHub Actions (issue #14) — `.github/workflows/ci-backend.yml`, path-filtered to
   `backend/**`, runs restore (locked mode) → build → the full test suite (unit + Testcontainers
   PostgreSQL integration; `ubuntu-latest` ships Docker) on pushes to `main` and PRs. Coverage is

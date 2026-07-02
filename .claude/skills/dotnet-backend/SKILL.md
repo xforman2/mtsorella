@@ -207,6 +207,34 @@ no validator simply skips validation.
   `cd backend && dotnet ef migrations add <Name> --project src/Mtsorella.Api --output-dir Persistence/Migrations`.
   Tooling lives in `.config/dotnet-tools.json`; run `dotnet tool restore` first on a fresh clone.
 
+## Auth & authorization
+Authentication is a lean, native stack — **not** full ASP.NET Core Identity: an own `UserAccount`
+aggregate (`Domain/Identity/`), Identity's `PasswordHasher<T>` for hashing only, and JWT bearer tokens.
+There is **no public registration** — accounts are admin-provisioned from an accepted prihláška.
+
+- **`UserAccount`** (`Domain/Identity/UserAccount.cs`) — `Email` + `PasswordHash` + `Role`
+  (`Member`/`Admin`; `Guest` is never stored) + optional `MemberId` link + `MustChangePassword`.
+  Decoupled from the public `Coach` aggregate. Hashing/verification is infrastructure; the domain only
+  stores the hash (`ChangePassword` clears the forced-change flag; `UpgradePasswordHash` is the rehash path).
+- **Infra in `Common/Auth/`:** `IPasswordHasher`/`PasswordHasherAdapter` (wraps `PasswordHasher<object>`),
+  `IJwtTokenIssuer`/`JwtTokenIssuer` (claims `sub`=account id, `role`, `member_id`), `ICurrentUser`
+  (reads those claims off `HttpContext` so handlers don't), `PasswordGenerator` (temp passwords), and
+  `AdminSeeder` (first admin from config). `IUserAccountRepository` adds `GetByEmailAsync` for login.
+- **Config:** a `Jwt` section (`Issuer`/`Audience`/`AccessTokenMinutes`) in appsettings; the signing key is
+  `Jwt:Secret` from env/user-secrets (`Jwt__Secret`), **never committed**. `Program.cs` falls back to a
+  random per-process key when unset so dev/test/CI still boot — production must set a stable secret. The
+  admin seed (`Admin:Email`/`Admin:Password`) is likewise config-only; the seeder is a no-op when unset.
+- **Gating a slice** (how every future feature is protected):
+  - Admin panel → `.RequireAuthorization("Admin")` on the endpoint.
+  - Member zone (any logged-in user) → `.RequireAuthorization("Member")`.
+  - Public/guest → nothing; endpoints are anonymous by default.
+  Both policies are registered in `Program.cs`. Auth failures surface as 401/403 (`ErrorOrResults`
+  already maps `Error.Unauthorized`/`Error.Forbidden`); a handler that needs the caller injects
+  `ICurrentUser` rather than reading `HttpContext`.
+- **M0 endpoints:** `POST /auth/login` → `{ token, mustChangePassword }`; admin `POST /admin/accounts`
+  turns an application into a `Member` + `UserAccount` (temp password returned once) and accepts it;
+  `POST /auth/change-password` clears the forced-change flag; `GET /admin/applications` lists prihlášky.
+
 ## SOLID / DRY in this codebase
 - **S**RP: a slice does one feature; a handler does one operation; the behavior does one cross-cutting
   concern. If a handler grows multiple responsibilities, split the slice.
